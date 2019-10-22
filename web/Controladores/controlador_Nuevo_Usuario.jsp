@@ -4,6 +4,7 @@
     Author     : daw203
 --%>
 
+<%@page import="Password.Codificar"%>
 <%@page import="Auxiliares.ConexionEstatica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,8 +24,9 @@
         String pass2 = request.getParameter("pass2");
 
         if (pass1.equals(pass2)) {
+            String c = Codificar.codifica(pass1);
             ConexionEstatica.nueva();
-            ConexionEstatica.insertarProfesor(email, nombre, apellido, pass1, "0" );
+            ConexionEstatica.insertarProfesor(email, nombre, apellido, c, 0);
             ConexionEstatica.cerrarBD();
             response.sendRedirect("../index.jsp");
         } else {

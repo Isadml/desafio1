@@ -15,11 +15,11 @@
         <h1>Formulario de registro para nuevos usuarios</h1>
         
         <form name="registro" action="../Controladores/controlador_Nuevo_Usuario.jsp" method="POST">
-            <label for="email">Email: </label><input type="email" id="email" name="email" value=""></br></br>
-            <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value=""></br></br>
-            <label for="apellido">Apellido: </label><input type="text" id="nombre" name="apellido" value=""></br></br>
-            <label for="password1">Password: </label><input type="password" id="password1" name="pass1" value=""></br></br>
-            <label for="password2">Repetir password: </label><input type="password" id="password2" name="pass2" value=""></br></br>
+            <label for="email">Email: </label><input type="email" id="email" name="email" value="" required=""></br></br>
+            <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="" required=""></br></br>
+            <label for="apellido">Apellido: </label><input type="text" id="nombre" name="apellido" value="" required=""></br></br>
+            <label for="password1">Password: </label><input type="password" id="password1" name="pass1" value="" required=""></br></br>
+            <label for="password2">Repetir password: </label><input type="password" id="password2" name="pass2" value="" required=""></br></br>
 
             
             <label for="aceptar"></label><input type="submit" id="aceptar" name="boton_acep_new" value="Aceptar"></br></br>

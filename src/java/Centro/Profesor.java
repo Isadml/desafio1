@@ -13,7 +13,7 @@ public class Profesor {
     
 //********************************ATRIBUTOS*************************************
     
-    private String cod_Prof;
+    private int cod_Prof;
     private String nombre;
     private String apellidos;
     private String email;
@@ -21,7 +21,7 @@ public class Profesor {
     
 //********************************CONSTRUCTORES*********************************
 
-    public Profesor(String cod_Prof, String nombre, String apellidos, String email, String passw) {
+    public Profesor(int cod_Prof, String nombre, String apellidos, String email, String passw) {
         this.cod_Prof = cod_Prof;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -55,11 +55,11 @@ public class Profesor {
         this.passw = passw;
     }
     
-    public String getCod_Prof() {
+    public int getCod_Prof() {
         return cod_Prof;
     }
 
-    public void setCod_Prof(String cod_Prof) {
+    public void setCod_Prof(int cod_Prof) {
         this.cod_Prof = cod_Prof;
     }
 

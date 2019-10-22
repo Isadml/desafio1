@@ -4,6 +4,7 @@
     Author     : isa
 --%>
 
+<%@page import="Password.Codificar"%>
 <%@page import="Centro.Profesor"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Auxiliares.*"%>
@@ -21,7 +22,7 @@
                 //sesion.setMaxInactiveInterval(60);
 
                 String email = (request.getParameter("email"));
-                String passw = (request.getParameter("pass"));
+                String passw = (Codificar.codifica(request.getParameter("pass")));
                 
                 /**
                  * Codificar la contraseña antes de compararla con otra contraseña
@@ -46,7 +47,6 @@
                          * Si Sólo tiene permiso nivel 1, redirigir al Login_Profesor.
                          * Si no, redirigir a Tipo_Login.
                          */
-                        
                         
                         response.sendRedirect("../Vistas/Login_Profesores.jsp");
                     } else {
