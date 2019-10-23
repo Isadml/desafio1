@@ -21,6 +21,7 @@
             <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label><br><br>
             
             <label for="volver"><input id="volver" name="volver" type="submit" value="Volver"/></label><br><br>
+            <label for="editar"><input id="editar" name="editar" type="submit" value="Editar perfil"/></label><br><br>
             <label for="cerrar"><input id="cerrar" name="cerrar" type="submit" value="Cerrar sesión"/></label>
             
         </form>

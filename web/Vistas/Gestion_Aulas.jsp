@@ -4,6 +4,8 @@
     Author     : daw203
 --%>
 
+<%@page import="Centro.Aula"%>
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,9 +16,27 @@
     <body>
         <h3>Bienvenido a la página de gestión de aulas</h3>
         
-        <form name="gestion_aulas" action="" method="POST">
-            //meter los datos en una tabla
+        
+        
+        <% LinkedList<Aula> ListaAula = (LinkedList<Aula>) session.getAttribute("reservas");
+            for (int i = 0; i < ListaAula.size(); i++) {
+                Aula a = (Aula) ListaAula.get(i);
+        %>
+        <form name="gestion_aulas" action="../Controladores/Controlador_Gestion_Aulas.jsp" method="POST">
+            <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="<%=a.getCodAula()%>"></br></br>
+            <label for="descrip">Descripción </label><input type="text" id="descrip" name="descrip" value="<%=a.getDescripcion()%>"></br></br>
+
+            <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
+            <label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar"><br><br>
+
         </form>
+        <%}%>
+
+        <form name="botones" action="" method="POST">
+            <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
+            <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
+        </form>
+        
         
     </body>
 </html>

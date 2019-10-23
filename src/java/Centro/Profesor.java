@@ -18,9 +18,19 @@ public class Profesor {
     private String apellidos;
     private String email;
     private String passw;
+    private int rol;
     
 //********************************CONSTRUCTORES*********************************
 
+    public Profesor(int cod_Prof, String nombre, String apellidos, String email, String passw, int rol) {
+        this.cod_Prof = cod_Prof;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.passw = passw;
+        this.rol = rol;
+    }
+    
     public Profesor(int cod_Prof, String nombre, String apellidos, String email, String passw) {
         this.cod_Prof = cod_Prof;
         this.nombre = nombre;
@@ -71,8 +81,15 @@ public class Profesor {
         this.apellidos = apellidos;
     }
     
+     public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+    
 //********************************MÉTODOS***************************************
 
 
-    
 }

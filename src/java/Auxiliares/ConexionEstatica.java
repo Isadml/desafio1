@@ -24,6 +24,9 @@ public class ConexionEstatica {
     //Atributo que nos permite ejecutar una sentencia SQL
     private static java.sql.ResultSet Conj_Registros;
 
+    /**
+     * Inicia una nueva conexión con la base de datos
+     */
     public static void nueva() {
         try {
             //Cargar el driver/controlador
@@ -49,6 +52,9 @@ public class ConexionEstatica {
         }
     }
 
+    /**
+     * Cerrar la base de datos
+     */
     public static void cerrarBD() {
         try {
             // resultado.close();
@@ -59,6 +65,12 @@ public class ConexionEstatica {
         }
     }
 
+    /**
+     * Select para saber si el profesor existe en la BBDD
+     *
+     * @param email
+     * @return
+     */
     public static Profesor existeProfesor(String email) {
         Profesor existe = null;
         try {
@@ -67,6 +79,12 @@ public class ConexionEstatica {
             if (ConexionEstatica.Conj_Registros.next())//Si devuelve true es que existe.
             {
                 existe = new Profesor(Conj_Registros.getInt("codProf"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getString("email"), Conj_Registros.getString("password"));
+                int cod = existe.getCod_Prof();
+                String sentencia2 = "SELECT cod_privilegio FROM permisos_Profesores WHERE cod_Prof = " + cod;
+                ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+                if (ConexionEstatica.Conj_Registros.next()) {
+                    existe.setRol(Conj_Registros.getInt("cod_privilegio"));
+                }
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
@@ -83,10 +101,16 @@ public class ConexionEstatica {
         LinkedList usuariosBD = new LinkedList<>();
         Profesor p = null;
         try {
-            String sentencia = "SELECT * FROM usuarios";
+            String sentencia = "SELECT * FROM profesores";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while (Conj_Registros.next()) {
                 p = new Profesor(Conj_Registros.getInt("codProf"), Conj_Registros.getString("email"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getString("password"));
+                int cod = p.getCod_Prof();
+                String sentencia2 = "SELECT cod_privilegio FROM permisos_Profesores WHERE cod_Prof = " + cod;
+                ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
+                while (Conj_Registros.next()) {
+                    p.setRol(Conj_Registros.getInt("cod_privilegio"));
+                }
                 usuariosBD.add(p);
             }
         } catch (SQLException ex) {
@@ -94,6 +118,12 @@ public class ConexionEstatica {
         return usuariosBD;
     }
 
+    /**
+     * Select para obtener las reservas que ha realizado cada profesor
+     *
+     * @param codProf
+     * @return
+     */
     public static LinkedList obtenerReservas(int codProf) {
         LinkedList reservaBD = new LinkedList<>();
         Reserva r = null;
@@ -108,49 +138,126 @@ public class ConexionEstatica {
         }
         return reservaBD;
     }
-    
-    /**public static LinkedList obtenerAula(int cod) {
-        LinkedList reservaBD = new LinkedList<>();
-        Reserva r = null;
-        try {
-            String sentencia = "SELECT * FROM reserva, horario WHERE cod_Prof = '" + codProf + "' AND horario.cod_Hora = reserva.cod_Hora";
-            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
-            while (Conj_Registros.next()) {
-                r = new Reserva(Conj_Registros.getInt("cod_Prof"), Conj_Registros.getInt("cod_Aula"), Conj_Registros.getInt("cod_Hora"), Conj_Registros.getString("fecha"), Conj_Registros.getInt("cod_Reserva"), Conj_Registros.getString("hora_Inicio"), Conj_Registros.getString("hora_Finalizar"));
-                reservaBD.add(r);
-            }
-        } catch (SQLException ex) {
-        }
-        return reservaBD;
-    }**/
 
     //----------------------------------------------------------
+    /**
+     * Insert para añadir profesores en la BBDD
+     *
+     * @param email
+     * @param nombre
+     * @param apellido
+     * @param password
+     * @param cod_Prof
+     * @throws SQLException
+     */
     public static void insertarProfesor(String email, String nombre, String apellido, String password, int cod_Prof) throws SQLException {
         String Sentencia = "INSERT INTO profesores VALUES ('" + nombre + "','" + apellido + "','" + email + "', '" + password + "', " + cod_Prof + ")";
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 
     //----------------------------------------------------------
-    public static void borrarProfesor(String email) throws SQLException {
-        String Sentencia = "DELETE FROM usuarios WHERE email = '" + email + "'";
+    /**
+     * Delete para borrar a un profesor de la BBDD
+     *
+     * @param codigo
+     * @throws SQLException
+     */
+    public static void borrarProfesor(int codigo) throws SQLException {
+        String Sentencia = "DELETE FROM profesores WHERE codProf = " + codigo;
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 
     //----------------------------------------------------------
-    public static void modificarProfesor(String codProf, String nombre) throws SQLException {
-        String Sentencia = "UPDATE usuarios SET nombre = " + nombre + " WHERE codProf = '" + codProf + "'";
+    /**
+     * Update para que un profesor pueda modificar su perfil
+     *
+     * @param email
+     * @param nombre
+     * @param apellido
+     * @param password
+     * @param cod_Prof
+     * @throws SQLException
+     */
+    public static void modificarPerfil(String email, String nombre, String apellido, String password, int cod_Prof) throws SQLException {
+        String Sentencia = "UPDATE profesores SET nombre = '" + nombre + "', apellido = '" + apellido + "', email = '" + email + "', password = '" + password + "' WHERE codProf = " + cod_Prof;
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 
     //----------------------------------------------------------
+    /**
+     * Update para que el administrador general pueda modificar los perfiles de los
+     * profesores
+     *
+     * @param email
+     * @param nombre
+     * @param apellido
+     * @param cod_Prof
+     * @throws SQLException
+     */
+    public static void gestionarProfesor(String email, String nombre, String apellido, int cod_Prof) throws SQLException {
+        String Sentencia = "UPDATE profesores SET nombre = '" + nombre + "', apellido = '" + apellido + "', email = '" + email + "' WHERE codProf = " + cod_Prof;
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    //----------------------------------------------------------
+    /**
+     * Update para modificar las reservas
+     *
+     * @param cod
+     * @param cod_Hora
+     * @param cod_Aula
+     * @param fecha
+     * @throws SQLException
+     */
     public static void modificarReserva(int cod, int cod_Hora, int cod_Aula, String fecha) throws SQLException {
         String Sentencia = "UPDATE reserva SET cod_Hora = " + cod_Hora + ", cod_Aula = " + cod_Aula + ", fecha = '" + fecha + "' WHERE cod_Reserva = " + cod;
         Sentencia_SQL.executeUpdate(Sentencia);
     }
-    
+
     //----------------------------------------------------------
+    /**
+     *Delete para borrar una reserva
+     * @param cod
+     * @throws SQLException
+     */
     public static void borrarReserva(int cod) throws SQLException {
         String Sentencia = "DELETE FROM reserva WHERE cod_Reserva = " + cod;
         Sentencia_SQL.executeUpdate(Sentencia);
     }
+
+    //----------------------------------------------------------
+    /**
+     * Update para modificar permisos
+     * @param cod_Prof
+     * @param privi
+     * @throws SQLException 
+     */
+    public static void modificarPermisos(int cod_Prof, int privi) throws SQLException {
+        String Sentencia = "UPDATE permisos_Profesores SET cod_privilegio = " + privi + " WHERE codProf = " + cod_Prof;
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    //----------------------------------------------------------
+    /**
+     * Insert para añadir permisos
+     * @param cod_Prof
+     * @param privi
+     * @throws SQLException 
+     */
+    public static void añadirPermisos(int cod_Prof, int privi) throws SQLException {
+        String Sentencia = "UPDATE permisos_Profesores SET cod_privilegio = " + privi + ", codProf = " + cod_Prof;
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    //----------------------------------------------------------
+    /**
+     * Delete para borrar permisos si se elimina a un profesor
+     * @param codigo
+     * @throws SQLException 
+     */
+    public static void borrarPrivilegios(int codigo) throws SQLException {
+        String Sentencia = "DELETE FROM permisos_Profesores WHERE codProf = " + codigo;
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
 }

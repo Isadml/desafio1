@@ -4,6 +4,7 @@
     Author     : daw203
 --%>
 
+<%@page import="Centro.Profesor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,26 +14,28 @@
     </head>
     <body>
         <h3>¿Cómo te quieres logear?</h3>
-        
-        <form name="tipo_login" action="" method="POST">
-            <label for="elegir">
-                <select id="elegir">
-                    <option id="normal" value="normal">Login normal</option>
-                    <option id="admin_aula" value="admin_aula">Login como administrador de aulas</option>
-                    <option id="admin_gen" value="admin_gen" disabled>Login como administrador general</option>
-                </select>
-            </label>
-            <label for="acep"><input id="acep" type="submit" value="Aceptar"/></label>
+
+        <% Profesor p = (Profesor) session.getAttribute("profe");
+
+            if (p.getRol() == 2) {
+//Si el profesor tiene permisos de nivel 2 (administrador de aula)
+        %> 
+        <form name="tipo_login" action="../Controladores/Controlador_Tipo_Login.jsp" method="POST">
+            <input type="submit" name="normal" id="normal" value="Login normal"/><br><br>
+            <input type="submit" name="admin_aula" id="admin_aula" value="Login como administrador de aulas"/><br><br>
         </form>
-        
-        <% 
-        /**
-         * Añadir la opción de que el usuario sólo pueda acceder a otras páginas
-         * si posee los permisos necesarios de forma que un usuario nivel 2
-         * no pueda acceder como admin general.
-         */
+        <% }
+            if (p.getRol() == 3) {
+//Si el profesor tiene permisos de nivel  (administrador general)
+        %> 
+        <form name="tipo_login" action="../Controladores/Controlador_Tipo_Login.jsp" method="POST">
+            <input type="submit" name="normal" id="normal" value="Login normal"/><br><br>
+            <input type="submit" name="admin_aula" id="admin_aula" value="Login como administrador de aulas"/><br><br>
+            <input type="submit" name="admin_general" id="admin_general" value="Login como administrador general"/><br><br>
+        </form>
+        <% }
         %>
-        
-        
+
+
     </body>
 </html>

@@ -16,7 +16,8 @@
     </head>
     <body>
 
-        <%  if (request.getParameter("modificar") != null) {
+        <%  //Modificar una reserva de aula con el código de la reserva
+            if (request.getParameter("modificar") != null) {
                 ConexionEstatica.nueva();
                 Profesor p = (Profesor) session.getAttribute("profe");
                 LinkedList Lista = ConexionEstatica.obtenerReservas(p.getCod_Prof());
@@ -33,6 +34,7 @@
                 response.sendRedirect("../Vistas/Listado_Reservas.jsp");
             }
 
+            //Borrar o eliminar una reserva
             if (request.getParameter("borrar")!= null) {
                 ConexionEstatica.nueva();
                 Profesor p = (Profesor) session.getAttribute("profe");
@@ -44,10 +46,12 @@
                 response.sendRedirect("../Vistas/Listado_Reservas.jsp");
             }
 
+            //Añadir una reserva nueva a la lista
             if (request.getParameter("add")!= null) {
                 response.sendRedirect("../Vistas/Login_Profesores.jsp");
             }
 
+            //Cerrar sesión
             if (request.getParameter("cerrar")!= null) {
                 session.invalidate();
                 response.sendRedirect("../index.jsp");

@@ -1,23 +1,24 @@
 <%-- 
-    Document   : controlador_Nuevo_Usuario
-    Created on : 18-oct-2019, 12:58:30
+    Document   : Controlador_Editar_Perfil
+    Created on : 23-oct-2019, 9:17:27
     Author     : daw203
 --%>
 
 <%@page import="Password.Codificar"%>
 <%@page import="Auxiliares.ConexionEstatica"%>
+<%@page import="Centro.Profesor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>controlador nuevo usuario</title>
+        <title>JSP Page</title>
     </head>
     <body>
 
-        <% //Registrar a un nuevo usuario
-            if (request.getParameter("boton_acep_new") != null) {
-
+        <% //El usuario puede modificar su propio perfil
+            if (request.getParameter("modificar") != null) {
+                Profesor p = (Profesor) session.getAttribute("profe");
                 String email = request.getParameter("email");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
@@ -27,19 +28,20 @@
                 if (pass1.equals(pass2)) {
                     String c = Codificar.codifica(pass1);
                     ConexionEstatica.nueva();
-                    ConexionEstatica.insertarProfesor(email, nombre, apellido, c, 0);
+                    ConexionEstatica.modificarPerfil(email, nombre, apellido, c, p.getCod_Prof());
                     ConexionEstatica.cerrarBD();
-                    response.sendRedirect("../index.jsp");
+                    response.sendRedirect("../Vistas/Editar_Perfil.jsp");
                 } else {
         %>
         <script>
             alert("Las contraseñas no coinciden.");
         </script>
         <%
+                }
             }
-
-            //Para volver al index
-            if (request.getParameter("boton_volver") != null) {
+            //Cerrar sesión
+            if (request.getParameter("cerrar") != null) {
+                session.invalidate();
                 response.sendRedirect("../index.jsp");
             }
         %>

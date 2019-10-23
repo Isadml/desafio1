@@ -17,7 +17,8 @@
     </head>
     <body>
 
-        <% if (request.getParameter("ver") != null) {
+        <% //Muesta la lista de todas las reservas del profesor que se ha logeado
+            if (request.getParameter("ver") != null) {
                 ConexionEstatica.nueva();
                 Profesor p = (Profesor) session.getAttribute("profe");
                 LinkedList Lista_Reservas = ConexionEstatica.obtenerReservas(p.getCod_Prof());
@@ -25,8 +26,9 @@
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Listado_Reservas.jsp");
             }
-        
-        if (request.getParameter("ver_disp") != null) {
+
+            //Muesta la disponibilidad del aula
+            if (request.getParameter("ver_disp") != null) {
                 ConexionEstatica.nueva();
                 int cod = Integer.parseInt(request.getParameter("aula"));
                 //Aula a = ConexionEstatica.obtenerAula(cod);
@@ -35,10 +37,13 @@
                 response.sendRedirect("../Controladores/Controlador_Login_Profesores.jsp");
             }
 
-            //if (request.getParameter("volver") != null) {
+            //Para que el usuario logeado pueda editar su perfil
+            if (request.getParameter("editar") != null) {
+                response.sendRedirect("../Vistas/Editar_Perfil.jsp");
 
-            //}
+            }
 
+            //Cerrar sesión
             if (request.getParameter("cerrar") != null) {
                 session.invalidate();
                 response.sendRedirect("../index.jsp");
