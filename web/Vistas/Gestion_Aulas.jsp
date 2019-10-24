@@ -18,13 +18,13 @@
         
         
         
-        <% LinkedList<Aula> ListaAula = (LinkedList<Aula>) session.getAttribute("reservas");
+        <% LinkedList<Aula> ListaAula = (LinkedList<Aula>) session.getAttribute("aulas");
             for (int i = 0; i < ListaAula.size(); i++) {
                 Aula a = (Aula) ListaAula.get(i);
         %>
         <form name="gestion_aulas" action="../Controladores/Controlador_Gestion_Aulas.jsp" method="POST">
-            <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="<%=a.getCodAula()%>"></br></br>
-            <label for="descrip">Descripción </label><input type="text" id="descrip" name="descrip" value="<%=a.getDescripcion()%>"></br></br>
+            <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="<%=a.getCodAula()%>" style="width: 50px">
+            <label for="descrip">Descripción </label><input type="text" id="descrip" name="descrip" value="<%=a.getDescripcion()%>">
 
             <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
             <label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar"><br><br>

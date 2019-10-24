@@ -5,6 +5,8 @@
  */
 package Auxiliares;
 
+import Centro.Aula;
+import Centro.Horario;
 import Centro.Profesor;
 import Centro.Reserva;
 import java.sql.SQLException;
@@ -101,16 +103,10 @@ public class ConexionEstatica {
         LinkedList usuariosBD = new LinkedList<>();
         Profesor p = null;
         try {
-            String sentencia = "SELECT * FROM profesores";
+            String sentencia = "SELECT *, cod_privilegio FROM profesores, permisos_Profesores WHERE profesores.codProf = permisos_Profesores.cod_Prof";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while (Conj_Registros.next()) {
-                p = new Profesor(Conj_Registros.getInt("codProf"), Conj_Registros.getString("email"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getString("password"));
-                int cod = p.getCod_Prof();
-                String sentencia2 = "SELECT cod_privilegio FROM permisos_Profesores WHERE cod_Prof = " + cod;
-                ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia2);
-                while (Conj_Registros.next()) {
-                    p.setRol(Conj_Registros.getInt("cod_privilegio"));
-                }
+                p = new Profesor(Conj_Registros.getInt("codProf"), Conj_Registros.getString("email"), Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getString("password"), Conj_Registros.getInt("cod_privilegio"));
                 usuariosBD.add(p);
             }
         } catch (SQLException ex) {
@@ -137,6 +133,61 @@ public class ConexionEstatica {
         } catch (SQLException ex) {
         }
         return reservaBD;
+    }
+    
+    /**
+     * Para obtener todas las aulas que están registradas en la BBDD
+     * @return 
+     */
+     public static LinkedList obtenerAulas() {
+        LinkedList aulasBD = new LinkedList<>();
+        Aula a = null;
+        try {
+            String sentencia = "SELECT * FROM aulas";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while (Conj_Registros.next()) {
+                a = new Aula(Conj_Registros.getInt("cod_Aula"), Conj_Registros.getString("descripcion"));
+                aulasBD.add(a);
+            }
+        } catch (SQLException ex) {
+        }
+        return aulasBD;
+    }
+    
+    /**
+     * Para obtener las horas reservadas en una fecha concreta y de un sólo aula
+     * @param cod
+     * @param fecha
+     * @return 
+     */
+    public static LinkedList obetenerHorasReservadas(int cod, String fecha) {
+        LinkedList reservaBD = new LinkedList<>();
+        Reserva r = null;
+        try {
+            String sentencia = "SELECT * FROM reserva, horario WHERE horario.cod_Hora = reserva.cod_Hora and reserva.fecha ='" + fecha + "' and reserva.cod_Aula = " + cod;
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while (Conj_Registros.next()) {
+                r = new Reserva(Conj_Registros.getInt("cod_Prof"), Conj_Registros.getInt("cod_Aula"), Conj_Registros.getInt("cod_Hora"), Conj_Registros.getString("fecha"), Conj_Registros.getInt("cod_Reserva"), Conj_Registros.getString("hora_Inicio"), Conj_Registros.getString("hora_Finalizar"));
+                reservaBD.add(r);
+            }
+        } catch (SQLException ex) {
+        }
+        return reservaBD;
+    }
+    
+    public static LinkedList obtenerHorario() {
+        LinkedList horarioBD = new LinkedList<>();
+        Horario h = null;
+        try {
+            String sentencia = "SELECT * FROM horario";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while (Conj_Registros.next()) {
+                h = new Horario(Conj_Registros.getInt("cod_Hora"), Conj_Registros.getString("hora_Inicio"), Conj_Registros.getString("hora_Finalizar"));
+                horarioBD.add(h);
+            }
+        } catch (SQLException ex) {
+        }
+        return horarioBD;
     }
 
     //----------------------------------------------------------
@@ -213,6 +264,21 @@ public class ConexionEstatica {
         String Sentencia = "UPDATE reserva SET cod_Hora = " + cod_Hora + ", cod_Aula = " + cod_Aula + ", fecha = '" + fecha + "' WHERE cod_Reserva = " + cod;
         Sentencia_SQL.executeUpdate(Sentencia);
     }
+    
+     //----------------------------------------------------------
+    /**
+     * Update para modificar las reservas
+     *
+     * @param cod
+     * @param cod_Hora
+     * @param cod_Aula
+     * @param fecha
+     * @throws SQLException
+     */
+    public static void insertarReserva(int cod, int cod_Hora, int cod_Aula, String fecha, int cod_Prof) throws SQLException {
+        String Sentencia = "INSERT INTO reserva VALUES (" + cod_Prof + ", " + cod_Aula + ", " + cod_Hora + ", '" + fecha + "' )";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
 
     //----------------------------------------------------------
     /**
@@ -245,7 +311,7 @@ public class ConexionEstatica {
      * @throws SQLException 
      */
     public static void añadirPermisos(int cod_Prof, int privi) throws SQLException {
-        String Sentencia = "UPDATE permisos_Profesores SET cod_privilegio = " + privi + ", codProf = " + cod_Prof;
+        String Sentencia = "INSERT INTO  permisos_Profesores VALUES( " + privi + ", " + cod_Prof + ")";
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 
@@ -259,5 +325,6 @@ public class ConexionEstatica {
         String Sentencia = "DELETE FROM permisos_Profesores WHERE codProf = " + codigo;
         Sentencia_SQL.executeUpdate(Sentencia);
     }
+
 
 }

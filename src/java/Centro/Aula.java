@@ -12,24 +12,24 @@ package Centro;
 public class Aula {
    
 //********************************ATRIBUTOS*************************************
-    private String codAula;
+    private int codAula;
     private String descripcion;
     
     
 //********************************CONSTRUCTORES*********************************
    
-    public Aula(String codAula, String descripcion) {
+    public Aula(int codAula, String descripcion) {
         this.codAula = codAula;
         this.descripcion = descripcion;
     }
     
 //********************************GETTER Y SETTER*******************************
     
-    public String getCodAula() {
+    public int getCodAula() {
         return codAula;
     }
 
-    public void setCodAula(String codAula) {
+    public void setCodAula(int codAula) {
         this.codAula = codAula;
     }
 

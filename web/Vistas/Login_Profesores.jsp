@@ -16,7 +16,7 @@
         
         <form name="login_prof" action="../Controladores/Controlador_Login_Profesores.jsp" method="POST">
             <label for="fecha"><input id="fecha" type="date" min=""/></label><br><br>
-            <label for="aula"><input id="aula" name="aula" type="text"/></label><br><br>
+            <label for="aula"><input id="aula" name="aula" type="text" style="width: 50px"/></label><br><br>
             <label for="ver"><input id="ver" type="submit" name="ver" value="Ver cuadrante"/></label><br><br>
             <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label><br><br>
             

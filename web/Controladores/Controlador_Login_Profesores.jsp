@@ -31,10 +31,14 @@
             if (request.getParameter("ver_disp") != null) {
                 ConexionEstatica.nueva();
                 int cod = Integer.parseInt(request.getParameter("aula"));
-                //Aula a = ConexionEstatica.obtenerAula(cod);
-                //session.setAttribute("reservas", Lista_Reservas);
+                String fecha = request.getParameter("fecha");
+                session.setAttribute("fecha", fecha);
+                LinkedList Lista_Horario = ConexionEstatica.obtenerHorario();
+                session.setAttribute("horario", Lista_Horario);
+                LinkedList Lista_Horas_Reservadas = ConexionEstatica.obetenerHorasReservadas(cod, fecha);
+                session.setAttribute("horas_Reservadas", Lista_Horas_Reservadas);
                 ConexionEstatica.cerrarBD();
-                response.sendRedirect("../Controladores/Controlador_Login_Profesores.jsp");
+                response.sendRedirect("../Vistas/Reservar_Aula.jsp");
             }
 
             //Para que el usuario logeado pueda editar su perfil

@@ -17,7 +17,9 @@
     </head>
     <body>
 
-        <% //El administrador general puede modificar usuarios con este método con el código del profesor
+        <% LinkedList<Profesor> ListaProfes = (LinkedList<Profesor>) ConexionEstatica.obtenerProfesores();
+
+            //El administrador general puede modificar usuarios con este método con el código del profesor
             if (request.getParameter("modificar") != null) {
                 String email = request.getParameter("email");
                 String nombre = request.getParameter("nombre");
@@ -26,7 +28,7 @@
 
                 ConexionEstatica.nueva();
                 ConexionEstatica.gestionarProfesor(email, nombre, apellido, codigo);
-                LinkedList ListaProfes = ConexionEstatica.obtenerProfesores();
+                ListaProfes = ConexionEstatica.obtenerProfesores();
                 session.setAttribute("profesores", ListaProfes);
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
@@ -39,7 +41,7 @@
                 int codigo = Integer.parseInt(request.getParameter("codigo"));
                 ConexionEstatica.borrarProfesor(codigo);
                 ConexionEstatica.borrarPrivilegios(codigo);
-                LinkedList ListaProfes = ConexionEstatica.obtenerProfesores();
+                ListaProfes = ConexionEstatica.obtenerProfesores();
                 session.setAttribute("profesores", ListaProfes);
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");

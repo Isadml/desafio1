@@ -12,6 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>¿Qué deseas hacer?</h3>
+        
+        <form name="admin_aulas" action="../Controladores/Controlador_Admin_General.jsp" method="POST">
+            <input type="submit" name="aulas" id="aulas" value="Administrar aulas"/><br><br>
+            <input type="submit" name="horario" id="horario" value="Administrar horarios"/><br><br>
+            <input type="submit" name="usuarios" id="usuarios" value="Administrar usuarios"/><br><br>
+        </form>
+        
     </body>
 </html>

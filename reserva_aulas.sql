@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-10-2019 a las 20:06:47
+-- Tiempo de generación: 24-10-2019 a las 09:11:04
 -- Versión del servidor: 5.7.27-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.2
 
@@ -104,10 +104,11 @@ CREATE TABLE `permisos_Profesores` (
 --
 
 INSERT INTO `permisos_Profesores` (`id`, `cod_privilegio`, `cod_Prof`) VALUES
-(1, 1, 1),
-(2, 2, 1),
 (3, 3, 1),
-(4, 1, 2);
+(4, 1, 2),
+(6, 1, 4),
+(7, 2, 3),
+(9, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,7 @@ CREATE TABLE `reserva` (
   `cod_Prof` int(11) NOT NULL,
   `cod_Aula` int(11) NOT NULL,
   `cod_Hora` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` varchar(10) NOT NULL,
   `cod_Reserva` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,8 +154,8 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`cod_Prof`, `cod_Aula`, `cod_Hora`, `fecha`, `cod_Reserva`) VALUES
-(1, 110, 1, '2019-10-20', 1),
-(2, 206, 1, '2019-10-21', 2);
+(1, 110, 1, '31-10-2019', 1),
+(2, 206, 1, '30-10-2019', 2);
 
 --
 -- Índices para tablas volcadas
@@ -204,7 +205,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `permisos_Profesores`
 --
 ALTER TABLE `permisos_Profesores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `profesores`
 --

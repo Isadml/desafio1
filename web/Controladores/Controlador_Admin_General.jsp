@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Controlador_Admin_Aulas
-    Created on : 23-oct-2019, 17:49:25
+    Document   : Controlador_Admin_General
+    Created on : 23-oct-2019, 18:17:49
     Author     : isa
 --%>
 
@@ -16,7 +16,7 @@
     </head>
     <body>
 
-        <% //Si el administrador de aulas elige la opción de gestión de aulas
+        <% //Si el administrador general elige la opción de gestión de aulas
             if (request.getParameter("aulas") != null) {
                 ConexionEstatica.nueva();
                 LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
@@ -24,11 +24,16 @@
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Gestion_Aulas.jsp");
             }
-            //Si el administrador de aulas elige la opción de gestión de horarios
+            //Si el administrador general elige la opción de gestión de horarios
             if (request.getParameter("horario") != null) {
                 response.sendRedirect("../Vistas/Gestion_Horarios.jsp");
             }
-%>
+
+            //Si el administrador general elige la opción de gestión de usuarios
+            if (request.getParameter("usuarios") != null) {
+                response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
+            }
+        %>
 
     </body>
 </html>
