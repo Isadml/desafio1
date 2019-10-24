@@ -31,6 +31,7 @@
             if (request.getParameter("ver_disp") != null) {
                 ConexionEstatica.nueva();
                 int cod = Integer.parseInt(request.getParameter("aula"));
+                session.setAttribute("cod_aula", cod);
                 String fecha = request.getParameter("fecha");
                 session.setAttribute("fecha", fecha);
                 LinkedList Lista_Horario = ConexionEstatica.obtenerHorario();

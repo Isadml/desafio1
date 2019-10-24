@@ -22,19 +22,20 @@
                 Profesor p = (Profesor) ListaProfes.get(i);
         %>
         <form name="gestion_usuarios" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
-            <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>" style="width: 50px">
-            <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>" style="width: 50px">
-            <label for="apellido">Apellido: </label><input type="text" id="nombre" name="apellido" value="<%=p.getApellidos()%>" style="width: 50px">
-            <label for="codigo">Código del profesor: </label><input type="number" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" disabled style="width: 50px">
-
+            <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>">
+            <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>" >
+            <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>" >
+            <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" style="width: 50px">
+            </br></br>
             <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
             <label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar">
 
         </form>
 
-
+        <br><br>
         <form name="permisos" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
-            <label for="permisos"></label><input type="number" id="permisos" name="permisos" value="" min="1" max="3">
+            <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" style="width: 50px">
+            <label for="permisos"></label><input type="number" id="permisos" name="permisos" min="1" max="3">
             <label for="mod_perm"></label><input type="submit" id="mod_perm" name="mod_perm" value="Modificar permisos">
             <label for="add_perm"></label><input type="submit" id="add_perm" name="add_perm" value="Añadir permisos"><br><br>
         </form>

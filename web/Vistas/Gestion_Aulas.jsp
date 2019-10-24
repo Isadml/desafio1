@@ -32,7 +32,10 @@
         </form>
         <%}%>
 
-        <form name="botones" action="" method="POST">
+        <form name="add_aula" action="../Controladores/Controlador_Gestion_Aulas.jsp" method="POST">
+            <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="" style="width: 50px">
+            <label for="descrip">Descripción </label><input type="text" id="descrip" name="descrip" value="">
+
             <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
         </form>

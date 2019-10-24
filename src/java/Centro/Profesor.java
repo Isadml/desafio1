@@ -22,16 +22,16 @@ public class Profesor {
     
 //********************************CONSTRUCTORES*********************************
 
-    public Profesor(int cod_Prof, String nombre, String apellidos, String email, String passw, int rol) {
-        this.cod_Prof = cod_Prof;
+    public Profesor(String nombre, String apellidos, String email, String passw, int cod_Prof, int rol) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
         this.passw = passw;
+        this.cod_Prof = cod_Prof;
         this.rol = rol;
     }
     
-    public Profesor(int cod_Prof, String nombre, String apellidos, String email, String passw) {
+    public Profesor(String nombre, String apellidos, String email, String passw, int cod_Prof) {
         this.cod_Prof = cod_Prof;
         this.nombre = nombre;
         this.apellidos = apellidos;

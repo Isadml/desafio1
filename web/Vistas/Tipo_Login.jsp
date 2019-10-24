@@ -26,7 +26,7 @@
         </form>
         <% }
             if (p.getRol() == 3) {
-//Si el profesor tiene permisos de nivel  (administrador general)
+//Si el profesor tiene permisos de nivel (administrador general)
         %> 
         <form name="tipo_login" action="../Controladores/Controlador_Tipo_Login.jsp" method="POST">
             <input type="submit" name="normal" id="normal" value="Login normal"/><br><br>

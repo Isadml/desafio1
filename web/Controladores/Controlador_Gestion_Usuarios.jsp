@@ -55,8 +55,8 @@
             //El administrador general puede modificar permisos con este método y con el código del profesor
             if (request.getParameter("mod_perm") != null) {
                 ConexionEstatica.nueva();
-                int permisos = Integer.parseInt(request.getParameter("codigo"));
-                int codigo = Integer.parseInt(request.getParameter("permisos"));
+                int codigo = Integer.parseInt(request.getParameter("codigo"));
+                int permisos  = Integer.parseInt(request.getParameter("permisos"));
                 ConexionEstatica.modificarPermisos(codigo, permisos);
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
@@ -67,7 +67,7 @@
                 ConexionEstatica.nueva();
                 int permisos = Integer.parseInt(request.getParameter("codigo"));
                 int codigo = Integer.parseInt(request.getParameter("permisos"));
-                ConexionEstatica.añadirPermisos(codigo, permisos);
+                ConexionEstatica.darPermisos(codigo, permisos);
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
             }
