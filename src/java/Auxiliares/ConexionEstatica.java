@@ -363,5 +363,38 @@ public class ConexionEstatica {
         Sentencia_SQL.executeUpdate(Sentencia);
     }
     
+    //----------------------------------------------------------
+    /**
+     * Update para modificar las horas almacenadas en la BBDD
+     * @param cod
+     * @param descripcion
+     * @throws SQLException 
+     */
+    public static void modificarHorario(int cod, String hora_i, String hora_f) throws SQLException {
+        String Sentencia = "UPDATE horario SET hora_Inicio = '" + hora_i + "' , hora_Finalizar = '" + hora_f + "' WHERE cod_Hora = " + cod;
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    //----------------------------------------------------------
+    /**
+     * Delete para borrar franjas horarias de la BBDD
+     * @param codigo
+     * @throws SQLException 
+     */
+    public static void borrarHorario(int codigo) throws SQLException {
+        String Sentencia = "DELETE FROM horario WHERE cod_Hora = " + codigo;
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
     
+    //----------------------------------------------------------
+    /**
+     * Insert para añadir franjas horarias a la BBDD
+     * @param cod
+     * @param desc
+     * @throws SQLException 
+     */
+    public static void insertarHora(int cod, String hora_i, String hora_f) throws SQLException {
+        String Sentencia = "INSERT INTO  horario VALUES( " + cod + ", '" + hora_i + "', '" + hora_f + "')";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
 }

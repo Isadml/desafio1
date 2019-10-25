@@ -30,7 +30,7 @@
             <label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar"><br><br>
 
         </form>
-        <%}%>
+        <% }%>
 
         <form name="add_aula" action="../Controladores/Controlador_Gestion_Aulas.jsp" method="POST">
             <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="" style="width: 50px">

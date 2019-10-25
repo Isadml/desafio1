@@ -9,9 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Recuperación de contraseña</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>¿Has olvidado tu contraseña?</h3>
+        
+        <form name="recuperar_passw" action="../Controladores/Controlador_Recuperar_Pass.jsp" method="POST">
+            <label for="email">Email: </label><input type="text" id="email" name="email" value="" placeholder="Introduzca su email"></br></br>
+            <input type="submit" name="mandar" value="Mandar email">
+        </form>
+        
     </body>
 </html>

@@ -4,6 +4,7 @@
     Author     : isa
 --%>
 
+<%@page import="Centro.Horario"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Centro.Aula"%>
 <%@page import="Auxiliares.ConexionEstatica"%>
@@ -26,6 +27,10 @@
             }
             //Si el administrador de aulas elige la opción de gestión de horarios
             if (request.getParameter("horario") != null) {
+                ConexionEstatica.nueva();
+                LinkedList<Horario> ListaHorario = ConexionEstatica.obtenerHorario();
+                session.setAttribute("horario", ListaHorario);
+                ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Gestion_Horarios.jsp");
             }
 %>
