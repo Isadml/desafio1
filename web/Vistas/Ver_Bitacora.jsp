@@ -4,6 +4,7 @@
     Author     : isa
 --%>
 
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,15 @@
     </head>
     <body>
         <h3>Contenido del archivo bitácora</h3>
-        //meter los datos en una tabla
+        
+        <% LinkedList<String> ListaBitacora = (LinkedList<String>) session.getAttribute("bitacora");
+        for (int i = 0; i < ListaBitacora.size(); i++) {
+                String cad = ListaBitacora.get(i);
+                %>
+                <p><%out.println(cad);%></p>
+            }
+
+        %>
+        
     </body>
 </html>

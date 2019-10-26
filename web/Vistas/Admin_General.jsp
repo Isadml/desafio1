@@ -18,6 +18,7 @@
             <input type="submit" name="aulas" id="aulas" value="Administrar aulas"/><br><br>
             <input type="submit" name="horario" id="horario" value="Administrar horarios"/><br><br>
             <input type="submit" name="usuarios" id="usuarios" value="Administrar usuarios"/><br><br>
+            <input type="submit" name="bitacora" id="bitacora" value="Ver archivo bitácora"/><br><br>
         </form>
         
     </body>
