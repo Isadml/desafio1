@@ -12,11 +12,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+
         <title>Gestión de horarios</title>
     </head>
     <body>
-        <h3>Bienvenido a la página de gestión de horarios</h3>
 
+        <header>
+            <h3>Bienvenido a la página de gestión de horarios</h3>
+        </header>
 
         <%
             LinkedList<Horario> ListaHorario = (LinkedList<Horario>) session.getAttribute("horario");
@@ -45,4 +50,12 @@
         </form>
 
     </body>
+
+    <footer>
+        <adress>Realizado por:<br>
+            Isabel de Marcos López<br>
+            2º DAW
+        </adress>
+    </footer>
+
 </html>

@@ -13,9 +13,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+
         <title>Página de reserva de aulas</title>
     </head>
     <body>
+
+        <header>
+            <h3>Página de reserva de aulas</h3>
+        </header>
 
         <% LinkedList Lista_Horario = (LinkedList<Horario>) session.getAttribute("horario");
             LinkedList Lista_Horas_Reservadas = (LinkedList<Reserva>) session.getAttribute("horas_Reservadas");
@@ -27,7 +34,7 @@
         <%
             for (int i = 0; i < Lista_Horario.size(); i++) {
                 Horario h = (Horario) Lista_Horario.get(i);
-                %>
+        %>
 
         <form name="reservas" action="../Controladores/Controlador_Reservar_Aula.jsp" method="POST">
             <label for="cod_hora">Código de hora </label><input type="text" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>" style="width: 50px">
@@ -49,16 +56,24 @@
             %>
 
 
-        <% }
+            <% }
                 } else { %> <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"> <%
 
                 }
-%>
-        <br>
+            %>
+            <br>
         </form>
         <%
             }
         %>
 
     </body>
+
+    <footer>
+        <adress>Realizado por:<br>
+            Isabel de Marcos López<br>
+            2º DAW
+        </adress>
+    </footer>
+
 </html>

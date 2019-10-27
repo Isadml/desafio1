@@ -1,0 +1,134 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27-oct-2019, 14:45:57
+    Author     : isa
+*/
+
+*{
+    box-sizing: border-box;
+    /*! margin: 10px; */
+}
+
+main {
+    text-align:left;
+
+}
+
+body {
+    display: grid;
+    grid-template-areas:
+        "cabecera      cabecera"
+        "menu_ver      formulario"
+        "pie           pie";
+
+    grid-template-columns: 25% auto;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    font-family: 'Varela Round', sans-serif;
+    margin: 30px;
+}
+
+header {
+    grid-area: cabecera;
+    background-color:bisque;
+    width: 100%;
+}
+
+form  {
+    grid-area: formulario;
+    width: auto;
+}
+
+nav.vertical {
+    grid-area: menu_ver;
+    font-family: cursive;
+    font-weight: bold;
+    height: auto;
+}
+
+nav.vertical  ul {
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    z-index: 100;
+}
+
+nav.vertical  li {
+    list-style-type: none;
+    position: relative;
+}
+
+nav.vertical  li a {
+    background-color:darksalmon;
+    color:crimson;
+    text-decoration: none;
+    display: block;
+    margin: 0px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+nav.vertical  li span.flecha {
+    color: black;
+
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+nav.vertical  li a:hover {
+    background-color: fuchsia;
+    color: blanchedalmond;
+}
+
+nav.vertical  > ul {
+    margin-left: 0px;
+}
+
+nav.vertical  > ul > li {
+    display: block;
+    margin: 0px;
+}
+
+nav.vertical  ul li ul {
+    display: none;
+    visibility: hidden;
+}
+
+nav.vertical  ul li:hover > ul{
+    display: block;
+    visibility: visible;
+    position: absolute;
+    top: 0px;
+    right: -200px;
+    width: 200px;
+}
+
+nav.vertical  ul ul li:hover > ul{
+    position: absolute;
+    left: 200px;
+    top: 0px;
+}
+
+nav.vertical  ul ul ul a {
+    background-color: palevioletred;
+    color: aliceblue;
+}
+
+nav li > span.flecha:not(:last-child):before{
+    content: "\25B8";
+}
+
+nav li:hover > span.flecha:not(:last-child):before{
+    content: "\25BE";
+}
+
+footer {
+    grid-area: pie;
+    background-color: indianred;
+    border: 5px indianred solid;
+}

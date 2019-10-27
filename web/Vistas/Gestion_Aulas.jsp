@@ -12,13 +12,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+
         <title>Gestión de aulas</title>
     </head>
     <body>
-        <h3>Bienvenido a la página de gestión de aulas</h3>
-        
-        
-        
+
+        <header>
+            <h3>Bienvenido a la página de gestión de aulas</h3>
+        </header>
+
+
         <% LinkedList<Aula> ListaAula = (LinkedList<Aula>) session.getAttribute("aulas");
             for (int i = 0; i < ListaAula.size(); i++) {
                 Aula a = (Aula) ListaAula.get(i);
@@ -40,7 +45,15 @@
             <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
         </form>
-        
-        
+
+
     </body>
+
+    <footer>
+        <adress>Realizado por:<br>
+            Isabel de Marcos López<br>
+            2º DAW
+        </adress>
+    </footer>
+
 </html>

@@ -19,8 +19,8 @@
         <% //Comprueba si existe el profesor que intenta acceder
             if (request.getParameter("aceptar") != null) {
 
-                HttpSession sesion = request.getSession();
-                sesion.setMaxInactiveInterval(5);
+                //HttpSession sesion = request.getSession();
+                //sesion.setMaxInactiveInterval(5);
                 
                 String email = (request.getParameter("email"));
                 String passw = (Codificar.codifica(request.getParameter("pass")));

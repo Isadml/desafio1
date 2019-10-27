@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 27-oct-2019, 14:41:12
+    Author     : isa
+*/
+
+form {
+    display: grid;
+    grid-template-columns: [labels] 15% [controles] 40%;
+    grid-auto-flow: row;
+    grid-gap: 0.3em;
+}
+
+form > label{
+    grid-column: labels;
+    grid-row: auto;
+}
+
+form > input{
+    grid-column: controles;
+    grid-row: auto;
+    background-color: bisque;
+    border-radius: 5px;
+}
+
+form > a {
+  width: 65%;
+}
+
+form >  submit {
+    grid-column: span 2;
+}

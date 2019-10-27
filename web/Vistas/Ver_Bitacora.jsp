@@ -11,19 +11,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+
         <title>Archivo bitácora</title>
     </head>
     <body>
-        <h3>Contenido del archivo bitácora</h3>
-        
+        <header>
+            <h3>Contenido del archivo bitácora</h3>
+        </header>
+
         <% LinkedList<String> ListaBitacora = (LinkedList<String>) session.getAttribute("bitacora");
-        for (int i = 0; i < ListaBitacora.size(); i++) {
+            for (int i = 0; i < ListaBitacora.size(); i++) {
                 String cad = ListaBitacora.get(i);
-                %>
-                <p><%out.println(cad.toString());%></p>
-            }
+        %>
+        <p><%out.println(cad.toString());%></p>
+        }
 
         %>
-        
+
     </body>
+
+    <footer>
+        <adress>Realizado por:<br>
+            Isabel de Marcos López<br>
+            2º DAW
+        </adress>
+    </footer>
+
 </html>

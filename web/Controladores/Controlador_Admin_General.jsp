@@ -4,6 +4,8 @@
     Author     : isa
 --%>
 
+<%@page import="java.io.FileNotFoundException"%>
+<%@page import="java.io.File"%>
 <%@page import="java.util.Scanner"%>
 <%@page import="java.io.FileReader"%>
 <%@page import="Centro.Horario"%>
@@ -43,15 +45,21 @@
 
             //Para que el administrador general pueda ver los datos almacenados en el archivo bitácora
             if (request.getParameter("bitacora") != null) {
-                //Scanner sc = new Scanner("/home/daw203/Documentos/glassfish5/glassfish/domains/domain1/config/bitacora.txt");
-                Scanner sc = new Scanner("/home/isa/glassfish-4.1.1/glassfish/domains/domain1/config/bitacora.txt");
+                File f = new File("/home/isa/glassfish-4.1.1/glassfish/domains/domain1/config/bitacora.txt");
                 LinkedList<String> ListaBitacora = new LinkedList();
-                while (sc.hasNextLine()) {
-                    String cad = sc.nextLine();
+                try {
+                    //Scanner sc = new Scanner("/home/daw203/Documentos/glassfish5/glassfish/domains/domain1/config/bitacora.txt");
+                    Scanner sc = new Scanner(f);
+                    
+                    while (sc.hasNextLine()) {
+                        String cad = sc.nextLine();
 
-                    ListaBitacora.add(cad);
-                    session.setAttribute("bitacora", ListaBitacora);
+                        ListaBitacora.add(cad);
+                    }
+                } catch (FileNotFoundException ex) {
+                    out.println("Fichero no existe");
                 }
+                session.setAttribute("bitacora", ListaBitacora);
                 response.sendRedirect("../Vistas/Ver_Bitacora.jsp");
             }
 

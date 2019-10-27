@@ -9,15 +9,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+
         <title>Recuperación de contraseña</title>
     </head>
     <body>
-        <h3>¿Has olvidado tu contraseña?</h3>
-        
+        <header>
+            <h3>¿Has olvidado tu contraseña?</h3>
+        </header>
+
         <form name="recuperar_passw" action="../Controladores/Controlador_Recuperar_Pass.jsp" method="POST">
             <label for="email">Email: </label><input type="text" id="email" name="email" value="" placeholder="Introduzca su email"></br></br>
             <input type="submit" name="mandar" value="Mandar email">
         </form>
-        
+
     </body>
+
+    <footer>
+        <adress>Realizado por:<br>
+            Isabel de Marcos López<br>
+            2º DAW
+        </adress>
+    </footer>
+
 </html>
