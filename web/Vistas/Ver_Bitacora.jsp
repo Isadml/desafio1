@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
         <title>Archivo bitácora</title>
     </head>
     <body>
@@ -19,7 +20,7 @@
         for (int i = 0; i < ListaBitacora.size(); i++) {
                 String cad = ListaBitacora.get(i);
                 %>
-                <p><%out.println(cad);%></p>
+                <p><%out.println(cad.toString());%></p>
             }
 
         %>

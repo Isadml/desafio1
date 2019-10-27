@@ -271,8 +271,8 @@ public class ConexionEstatica {
      * @param fecha
      * @throws SQLException
      */
-    public static void insertarReserva(int cod_Hora, int cod_Aula, String fecha, int cod_Prof) throws SQLException {
-        String Sentencia = "INSERT INTO reserva VALUES (" + cod_Prof + ", " + cod_Aula + ", " + cod_Hora + ", '" + fecha + "' )";
+    public static void insertarReserva(int cod_Hora, int cod_Aula, String fecha, int cod_Prof, int num) throws SQLException {
+        String Sentencia = "INSERT INTO reserva VALUES (" + cod_Prof + ", " + cod_Aula + ", " + cod_Hora + ", '" + fecha + "', " + num + ")";
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 

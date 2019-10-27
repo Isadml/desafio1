@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
         <title>Tipo login</title>
     </head>
     <body>
