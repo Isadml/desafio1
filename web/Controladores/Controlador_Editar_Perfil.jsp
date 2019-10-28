@@ -31,14 +31,9 @@
                     ConexionEstatica.modificarPerfil(email, nombre, apellido, c, p.getCod_Prof());
                     ConexionEstatica.cerrarBD();
                     response.sendRedirect("../Vistas/Editar_Perfil.jsp");
-                } else {
-        %>
-        <script>
-            alert("Las contraseñas no coinciden.");
-        </script>
-        <%
                 }
             }
+            
             //Cerrar sesión
             if (request.getParameter("cerrar") != null) {
                 session.invalidate();

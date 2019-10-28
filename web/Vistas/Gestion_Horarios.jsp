@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../css/.css"/>
 
         <title>Gestión de horarios</title>
@@ -25,13 +25,11 @@
         </header>
 
         <% Profesor p = (Profesor) session.getAttribute("profe");
-
             if (p.getRol() == 2) {
-//Si el profesor tiene permisos de nivel 2 (administrador de aula)
-        %> 
+        %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -48,12 +46,12 @@
             </ul>
         </nav>
         <% }
+
             if (p.getRol() == 3) {
-//Si el profesor tiene permisos de nivel (administrador general)
-        %> 
+        %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -76,10 +74,9 @@
                 </li>
             </ul>
         </nav>
-        <% }
-        %>
-
         <%
+            }
+
             LinkedList<Horario> ListaHorario = (LinkedList<Horario>) session.getAttribute("horario");
             for (int i = 0; i < ListaHorario.size(); i++) {
                 Horario h = (Horario) ListaHorario.get(i);

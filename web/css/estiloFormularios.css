@@ -10,7 +10,7 @@ and open the template in the editor.
 
 form {
     display: grid;
-    grid-template-columns: [labels] 10% [controles] 40%;
+    grid-template-columns: [labels] 10% [controles] 20%;
     grid-auto-flow: row;
     grid-gap: 0.3em;
 }
@@ -33,4 +33,5 @@ form > a {
 
 form >  submit {
     grid-column: span 2;
+    background-color: bisque;
 }

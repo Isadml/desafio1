@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../css/.css"/>
 
         <title>Gestión de usuarios</title>
@@ -26,7 +26,7 @@
 
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -66,7 +66,6 @@
 
         </form>
 
-        <br><br>
         <form name="permisos" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
             <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" style="width: 50px">
             <label for="permisos"></label><input type="number" id="permisos" name="permisos" min="1" max="3">
@@ -75,7 +74,7 @@
         </form>
 
         <%}%>
-
+        <br><br>
         <form name="botones" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
             <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
 

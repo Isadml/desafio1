@@ -76,7 +76,7 @@ public class ConexionEstatica {
     public static Profesor existeProfesor(String email) {
         Profesor existe = null;
         try {
-            String sentencia = "SELECT *, cod_privilegio  FROM profesores, permisos_Profesores WHERE email = '" + email + "'";
+            String sentencia = "SELECT *, cod_privilegio  FROM profesores, permisos_Profesores WHERE email = '" + email + "' and profesores.codProf = permisos_Profesores.cod_Prof";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             if (ConexionEstatica.Conj_Registros.next())//Si devuelve true es que existe.
             {

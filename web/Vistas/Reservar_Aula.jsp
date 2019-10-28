@@ -14,7 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../css/.css"/>
 
         <title>Página de reserva de aulas</title>
@@ -25,13 +25,12 @@
             <h3>Página de reserva de aulas</h3>
         </header>
         
-         <% Profesor p = (Profesor) session.getAttribute("profe");
-
+        <% Profesor p = (Profesor) session.getAttribute("profe");
             if (p.getRol() == 1) {
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -41,13 +40,11 @@
             </ul>
         </nav>
         <% }
-
             if (p.getRol() == 2) {
-//Si el profesor tiene permisos de nivel 2 (administrador de aula)
-        %> 
+        %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -64,12 +61,12 @@
             </ul>
         </nav>
         <% }
+
             if (p.getRol() == 3) {
-//Si el profesor tiene permisos de nivel (administrador general)
-        %> 
+        %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -92,8 +89,8 @@
                 </li>
             </ul>
         </nav>
-        <% }
-        %>
+        <%
+            }%>
 
         <% LinkedList Lista_Horario = (LinkedList<Horario>) session.getAttribute("horario");
             LinkedList Lista_Horas_Reservadas = (LinkedList<Reserva>) session.getAttribute("horas_Reservadas");
@@ -108,9 +105,9 @@
         %>
 
         <form name="reservas" action="../Controladores/Controlador_Reservar_Aula.jsp" method="POST">
-            <label for="cod_hora">Código de hora </label><input type="text" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>" style="width: 50px">
-            <label for="hora_inicio">Hora de inicio </label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>" style="width: 50px">
-            <label for="hora_finalizar">Hora de final </label><input type="text" id="hora_finalizar" name="hora_finalizar" value="<%=h.getHora_Finalizar()%>" style="width: 50px">
+            <label for="cod_hora">Código de hora </label><input type="text" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>">
+            <label for="hora_inicio">Hora de inicio </label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>">
+            <label for="hora_finalizar">Hora de final </label><input type="text" id="hora_finalizar" name="hora_finalizar" value="<%=h.getHora_Finalizar()%>">
 
             <%    if (!Lista_Horas_Reservadas.isEmpty()) {
                     for (int j = 0; j < Lista_Horas_Reservadas.size(); j++) {

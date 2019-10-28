@@ -23,12 +23,11 @@
         </header>
 
         <% Profesor p = (Profesor) session.getAttribute("profe");
-
             if (p.getRol() == 1) {
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -37,13 +36,12 @@
                 </li>   
             </ul>
         </nav>
-        <% } else {
+        <% }
             if (p.getRol() == 2) {
-//Si el profesor tiene permisos de nivel 2 (administrador de aula)
-        %> 
+        %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -59,13 +57,13 @@
                 </li>
             </ul>
         </nav>
-        <% } else {
+        <% }
+
             if (p.getRol() == 3) {
-//Si el profesor tiene permisos de nivel (administrador general)
-        %> 
+        %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -88,16 +86,12 @@
                 </li>
             </ul>
         </nav>
-        <% }
-
-                }
-            }
-
-        %> 
+        <%
+            }%>
 
         <form name="login_prof" action="../Controladores/Controlador_Login_Profesores.jsp" method="POST">
             <label for="fecha"><input id="fecha" name="fecha" type="date" min=""/></label>
-            <label for="aula"><input id="aula" name="aula" type="number" style="width: 50px"/></label>
+            <label for="aula"><input id="aula" name="aula" type="number"/></label>
             <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label>
             <label for="cerrar"><input id="cerrar" name="cerrar" type="submit" value="Cerrar sesión"/></label>
 

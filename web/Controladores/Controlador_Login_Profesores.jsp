@@ -17,17 +17,7 @@
     </head>
     <body>
 
-        <% //Muesta la lista de todas las reservas del profesor que se ha logeado
-            if (request.getParameter("ver") != null) {
-                ConexionEstatica.nueva();
-                Profesor p = (Profesor) session.getAttribute("profe");
-                LinkedList Lista_Reservas = ConexionEstatica.obtenerReservas(p.getCod_Prof());
-                session.setAttribute("reservas", Lista_Reservas);
-                ConexionEstatica.cerrarBD();
-                response.sendRedirect("../Vistas/Listado_Reservas.jsp");
-            }
-
-            //Muesta la disponibilidad del aula
+        <% //Muesta la disponibilidad del aula
             if (request.getParameter("ver_disp") != null) {
                 ConexionEstatica.nueva();
                 int cod = Integer.parseInt(request.getParameter("aula"));
@@ -41,9 +31,7 @@
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Reservar_Aula.jsp");
             }
-
-            
-
+           
             //Cerrar sesión
             if (request.getParameter("cerrar") != null) {
                 session.invalidate();

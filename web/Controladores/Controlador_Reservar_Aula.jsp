@@ -3,6 +3,8 @@
     Created on : 23-oct-2019, 22:59:13
     Author     : isa
 --%>
+<%@page import="Centro.Reserva"%>
+<%@page import="Centro.Horario"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Centro.Profesor"%>
 <%@page import="Auxiliares.ConexionEstatica"%>
@@ -27,6 +29,7 @@
                 LinkedList Lista_Horario = ConexionEstatica.obtenerHorario();
                 session.setAttribute("horario", Lista_Horario);
                 LinkedList Lista_Horas_Reservadas = ConexionEstatica.obetenerHorasReservadas(cod, fecha);
+                
                 session.setAttribute("horas_Reservadas", Lista_Horas_Reservadas);
                 ConexionEstatica.cerrarBD();
 

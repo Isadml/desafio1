@@ -23,58 +23,67 @@
     </head>
     <body>
         <% //Comprueba si existe el profesor que intenta acceder
-                if (request.getParameter("aceptar") != null) {
+            if (request.getParameter("aceptar") != null) {
 
-                    //HttpSession sesion = request.getSession();
-                    //sesion.setMaxInactiveInterval(5);
-                    String email = (request.getParameter("email"));
-                    String passw = (Codificar.codifica(request.getParameter("pass")));
+                //HttpSession sesion = request.getSession();
+                //sesion.setMaxInactiveInterval(5);
+                String email = (request.getParameter("email"));
+                String passw = (Codificar.codifica(request.getParameter("pass")));
 
-                    ConexionEstatica.nueva();
-                    Profesor p = ConexionEstatica.existeProfesor(email);
+                ConexionEstatica.nueva();
+                Profesor p = ConexionEstatica.existeProfesor(email);
 
-                    //Si esxiste, se le redirige a la página de login que le corresponde según los permisos que posee
-                    if (p != null) {
-                        session.setAttribute("profe", p);
-                        LinkedList ListaProfes = ConexionEstatica.obtenerProfesores();
-                        session.setAttribute("profesores", ListaProfes);
+                //Si esxiste, se le redirige a la página de login de profesores por defecto para que pueda reservar aula o navegar por la app
+                if (p != null) {
+                    session.setAttribute("profe", p);
 
-                        if (p.getEmail().contentEquals(email) && p.getPassw().contentEquals(passw)) {
-                            LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
-                            session.setAttribute("aulas", ListaAula);
+                    //Obtiene una lista con todos los profesores almacenados en la BBDD
+                    LinkedList ListaProfes = ConexionEstatica.obtenerProfesores();
+                    session.setAttribute("profesores", ListaProfes);
 
-                            LinkedList<Horario> ListaHorario = ConexionEstatica.obtenerHorario();
-                            session.setAttribute("horario", ListaHorario);
+                    if (p.getEmail().contentEquals(email) && p.getPassw().contentEquals(passw)) {
 
-                            LinkedList Lista_Reservas = ConexionEstatica.obtenerReservas(p.getCod_Prof());
-                            session.setAttribute("reservas", Lista_Reservas);
+                        //Si el login es correcto, se saca toda la información de las aulas almacenadas en la BBDD
+                        LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
+                        session.setAttribute("aulas", ListaAula);
 
-                            File f = new File("/home/isa/glassfish-4.1.1/glassfish/domains/domain1/config/bitacora.txt");
-                            LinkedList<String> ListaBitacora = new LinkedList();
-                            try {
-                                //Scanner sc = new Scanner("/home/daw203/Documentos/glassfish5/glassfish/domains/domain1/config/bitacora.txt");
-                                Scanner sc = new Scanner(f);
+                        //Para obtener los datos de los horarios almacenados en la BBDD
+                        LinkedList<Horario> ListaHorario = ConexionEstatica.obtenerHorario();
+                        session.setAttribute("horario", ListaHorario);
 
-                                while (sc.hasNextLine()) {
-                                    String cad = sc.nextLine();
+                        //Para obtener la lista de las aulas reservadas por el profesor que se ha logeado
+                        LinkedList Lista_Reservas = ConexionEstatica.obtenerReservas(p.getCod_Prof());
+                        session.setAttribute("reservas", Lista_Reservas);
 
-                                    ListaBitacora.add(cad);
-                                }
-                            } catch (FileNotFoundException ex) {
-                                out.println("Fichero no existe");
+                        //Para obtener los datos almacenados en el archivo bitácora
+                        File f = new File("/home/isa/glassfish-4.1.1/glassfish/domains/domain1/config/bitacora.txt");
+                        LinkedList<String> ListaBitacora = new LinkedList();
+                        try {
+                            //Scanner sc = new Scanner("/home/daw203/Documentos/glassfish5/glassfish/domains/domain1/config/bitacora.txt");
+                            Scanner sc = new Scanner(f);
+
+                            while (sc.hasNextLine()) {
+                                String cad = sc.nextLine();
+
+                                ListaBitacora.add(cad);
                             }
-                            session.setAttribute("bitacora", ListaBitacora);
-
-                            Date fecha = new Date(session.getCreationTime());
-                            Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema." + fecha);
-                            ConexionEstatica.cerrarBD();
-
-                            response.sendRedirect("../Vistas/Login_Profesores.jsp");
+                        } catch (FileNotFoundException ex) {
+                            out.println("Fichero no existe");
                         }
-                    } else {
-                        response.sendRedirect("../index.jsp");
+                        session.setAttribute("bitacora", ListaBitacora);
+
+                        //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
+                        Date fecha1 = new Date(session.getCreationTime());
+                        Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema." + fecha1);
+                        ConexionEstatica.cerrarBD();
+
+                        response.sendRedirect("../Vistas/Login_Profesores.jsp");
+
                     }
+                } else {
+                    response.sendRedirect("../index.jsp");
                 }
+            }
         %>
     </body>
 </html>

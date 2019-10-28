@@ -23,7 +23,7 @@
 
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="Login_Profesores.jsp">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
@@ -46,12 +46,13 @@
                 </li>
             </ul>
         </nav>
-        
-        <% LinkedList<String> ListaBitacora = (LinkedList<String>) session.getAttribute("bitacora");
+
+        <% LinkedList<String> ListaBitacora = new LinkedList();
+            ListaBitacora = (LinkedList<String>) session.getAttribute("bitacora");
             for (int i = 0; i < ListaBitacora.size(); i++) {
                 String cad = ListaBitacora.get(i);
         %>
-        <p><% out.println(cad.toString());%></p>
+        <p><% out.println(cad);%></p>
         }
 
         %>
