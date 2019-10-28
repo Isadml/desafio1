@@ -4,6 +4,7 @@
     Author     : daw203
 --%>
 
+<%@page import="Centro.Profesor"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Centro.Reserva"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,8 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/.css"/>
 
         <title>Listado de aulas reservadas</title>
     </head>
@@ -22,6 +23,77 @@
         <header>
             <h3>Listado de aulas reservadas</h3>
         </header>
+        
+         <% Profesor p = (Profesor) session.getAttribute("profe");
+
+            if (p.getRol() == 1) {
+        %>
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>   
+            </ul>
+        </nav>
+        <% }
+
+            if (p.getRol() == 2) {
+//Si el profesor tiene permisos de nivel 2 (administrador de aula)
+        %> 
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <% }
+            if (p.getRol() == 3) {
+//Si el profesor tiene permisos de nivel (administrador general)
+        %> 
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador general</a>
+                    <ul>
+                        <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
+                        <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <% }
+        %>
+        
         <% LinkedList<Reserva> Lista = (LinkedList<Reserva>) session.getAttribute("reservas");
 
             for (int i = 0; i < Lista.size(); i++) {
@@ -43,7 +115,7 @@
         <%}%>
 
         <form name="botones" action="../Controladores/Controlador_Listado_Reservas.jsp" method="POST">
-            <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
+            <label for="add"></label><input type="submit" id="add" name="add" value="+">
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
         </form>
 

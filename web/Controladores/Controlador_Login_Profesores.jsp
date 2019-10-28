@@ -42,11 +42,7 @@
                 response.sendRedirect("../Vistas/Reservar_Aula.jsp");
             }
 
-            //Para que el usuario logeado pueda editar su perfil
-            if (request.getParameter("editar") != null) {
-                response.sendRedirect("../Vistas/Editar_Perfil.jsp");
-
-            }
+            
 
             //Cerrar sesión
             if (request.getParameter("cerrar") != null) {

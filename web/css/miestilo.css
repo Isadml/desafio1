@@ -25,11 +25,10 @@ body {
         "menu_ver      formulario"
         "pie           pie";
 
-    grid-template-columns: 25% auto;
+    grid-template-columns: 30% auto;
     grid-template-rows: auto;
-    grid-gap: 20px;
+    grid-gap: 5px;
     font-family: 'Varela Round', sans-serif;
-    margin: 30px;
 }
 
 header {
@@ -45,9 +44,9 @@ form  {
 
 nav.vertical {
     grid-area: menu_ver;
-    font-family: cursive;
     font-weight: bold;
     height: auto;
+    width: 200px;
 }
 
 nav.vertical  ul {
@@ -60,6 +59,7 @@ nav.vertical  ul {
 nav.vertical  li {
     list-style-type: none;
     position: relative;
+    width: auto;
 }
 
 nav.vertical  li a {
@@ -70,14 +70,6 @@ nav.vertical  li a {
     margin: 0px;
     padding: 5px;
     box-sizing: border-box;
-}
-
-nav.vertical  li span.flecha {
-    color: black;
-
-    position: absolute;
-    right: 0px;
-    top: 0px;
 }
 
 nav.vertical  li a:hover {
@@ -117,14 +109,6 @@ nav.vertical  ul ul li:hover > ul{
 nav.vertical  ul ul ul a {
     background-color: palevioletred;
     color: aliceblue;
-}
-
-nav li > span.flecha:not(:last-child):before{
-    content: "\25B8";
-}
-
-nav li:hover > span.flecha:not(:last-child):before{
-    content: "\25BE";
 }
 
 footer {

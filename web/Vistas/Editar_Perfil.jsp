@@ -23,15 +23,86 @@
         </header>
 
         <% Profesor p = (Profesor) session.getAttribute("profe");
-        %>      
+
+            if (p.getRol() == 1) {
+        %>
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>   
+            </ul>
+        </nav>
+        <% } else {
+            if (p.getRol() == 2) {
+//Si el profesor tiene permisos de nivel 2 (administrador de aula)
+        %> 
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <% } else {
+            if (p.getRol() == 3) {
+//Si el profesor tiene permisos de nivel (administrador general)
+        %> 
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador general</a>
+                    <ul>
+                        <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
+                        <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <% }
+
+        }
+    }
+
+        %> 
+
 
         <form name="editar" action="../Controladores/Controlador_Editar_Perfil.jsp" method="POST">
-            <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>"></br></br>
-            <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>"></br></br>
-            <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>" ></br></br>
-            <label for="password1">Contraseña: </label><input type="password" id="password1" name="pass1" value=""></br></br>
-            <label for="password2">Confirmar contraseña: </label><input type="password" id="password2" name="pass2" value=""></br></br>
-            <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar"><br><br>
+            <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>">
+            <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>">
+            <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>">
+            <label for="password1">Contraseña: </label><input type="password" id="password1" name="pass1" value="">
+            <label for="password2">Confirmar contraseña: </label><input type="password" id="password2" name="pass2" value="">
+            <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión">
         </form>
 

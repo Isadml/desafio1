@@ -23,22 +23,71 @@
 
         <% Profesor p = (Profesor) session.getAttribute("profe");
 
+            if (p.getRol() == 1) {
+        %>
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="">Editar perfil</a></li>
+                        <li><a href="">Ver reservas</a></li>
+                        <li><a href="">Reservar aula</a></li>
+                    </ul>
+                </li>   
+            </ul>
+        </nav>
+        <% }
+
             if (p.getRol() == 2) {
 //Si el profesor tiene permisos de nivel 2 (administrador de aula)
         %> 
-        <form name="tipo_login" action="../Controladores/Controlador_Tipo_Login.jsp" method="POST">
-            <input type="submit" name="normal" id="normal" value="Login normal"/><br><br>
-            <input type="submit" name="admin_aula" id="admin_aula" value="Login como administrador de aulas"/><br><br>
-        </form>
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="">Editar perfil</a></li>
+                        <li><a href="">Ver reservas</a></li>
+                        <li><a href="">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="">Gestionar aulas</a></li>
+                        <li><a href="">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <% }
             if (p.getRol() == 3) {
 //Si el profesor tiene permisos de nivel (administrador general)
         %> 
-        <form name="tipo_login" action="../Controladores/Controlador_Tipo_Login.jsp" method="POST">
-            <input type="submit" name="normal" id="normal" value="Login normal"/><br><br>
-            <input type="submit" name="admin_aula" id="admin_aula" value="Login como administrador de aulas"/><br><br>
-            <input type="submit" name="admin_general" id="admin_general" value="Login como administrador general"/><br><br>
-        </form>
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="">Editar perfil</a></li>
+                        <li><a href="">Ver reservas</a></li>
+                        <li><a href="">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="">Gestionar aulas</a></li>
+                        <li><a href="">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador general</a>
+                    <ul>
+                        <li><a href="">Gestionar usuarios</a></li>
+                        <li><a href="">Ver bitácora</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
         <% }
         %>
 

@@ -4,6 +4,7 @@
     Author     : isa
 --%>
 
+<%@page import="Centro.Profesor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,14 +21,84 @@
         <header>
             <h3>Página de reserva de aulas</h3>
         </header>
-        <form name="login_prof" action="../Controladores/Controlador_Login_Profesores.jsp" method="POST">
-            <label for="fecha"><input id="fecha" name="fecha" type="date" min=""/></label><br><br>
-            <label for="aula"><input id="aula" name="aula" type="number" style="width: 50px"/></label><br><br>
-            <label for="ver"><input id="ver" type="submit" name="ver" value="Ver cuadrante"/></label><br><br>
-            <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label><br><br>
 
-            <label for="volver"><input id="volver" name="volver" type="submit" value="Volver"/></label><br><br>
-            <label for="editar"><input id="editar" name="editar" type="submit" value="Editar perfil"/></label><br><br>
+        <% Profesor p = (Profesor) session.getAttribute("profe");
+
+            if (p.getRol() == 1) {
+        %>
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>   
+            </ul>
+        </nav>
+        <% } else {
+            if (p.getRol() == 2) {
+//Si el profesor tiene permisos de nivel 2 (administrador de aula)
+        %> 
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <% } else {
+            if (p.getRol() == 3) {
+//Si el profesor tiene permisos de nivel (administrador general)
+        %> 
+        <nav class="vertical">
+            <ul>
+                <li><a href="">Profesor</a>
+                    <ul>
+                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador de aula</a>
+                    <ul>
+                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="">Administrador general</a>
+                    <ul>
+                        <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
+                        <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <% }
+
+                }
+            }
+
+        %> 
+
+        <form name="login_prof" action="../Controladores/Controlador_Login_Profesores.jsp" method="POST">
+            <label for="fecha"><input id="fecha" name="fecha" type="date" min=""/></label>
+            <label for="aula"><input id="aula" name="aula" type="number" style="width: 50px"/></label>
+            <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label>
             <label for="cerrar"><input id="cerrar" name="cerrar" type="submit" value="Cerrar sesión"/></label>
 
         </form>

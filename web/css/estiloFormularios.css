@@ -10,7 +10,7 @@ and open the template in the editor.
 
 form {
     display: grid;
-    grid-template-columns: [labels] 15% [controles] 40%;
+    grid-template-columns: [labels] 10% [controles] 40%;
     grid-auto-flow: row;
     grid-gap: 0.3em;
 }

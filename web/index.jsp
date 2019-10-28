@@ -18,7 +18,7 @@
         <h1>Inicio de sesión</h1>
         
         <form name="inicio_sesion" action="Controladores/controlador_Index.jsp" method="POST">
-            <label for="email">Email: </label><input type="text" id="email" name="email" value=""></br></br>
+            <label for="email">Email: </label><input type="text" id="email" name="email" value="">
             <label for="password">Password: </label><input type="password" id="password" name="pass" value=""></br></br>
             <input type="submit" name="aceptar" value="Aceptar">
             
