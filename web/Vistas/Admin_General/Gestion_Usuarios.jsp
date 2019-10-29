@@ -57,17 +57,18 @@
             for (int i = 0; i < ListaProfes.size(); i++) {
                 Profesor p = (Profesor) ListaProfes.get(i);
         %>
-        <form name="gestion_usuarios" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
+        <form name="gestion_usuarios" enctype="multipart/form-data" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
             <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>">
             <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>" >
             <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>" >
             <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" style="width: 50px">
+            <label for="fichero>"Foto de perfil: </label><input type="file" id="fichero" name="fichero"/>
             </br></br>
             <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
             <label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar">
 
         </form>
-
+ 
         <form name="permisos" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
             <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" style="width: 50px">
             <label for="permisos"></label><input type="number" id="permisos" name="permisos" min="1" max="3">

@@ -4,11 +4,18 @@
     Author     : daw203
 --%>
 
+<%@page import="java.io.InputStream"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.File"%>
+<%@page import="java.util.List"%>
 <%@page import="Password.Codificar"%>
 <%@page import="Centro.Profesor"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Auxiliares.ConexionEstatica"%>
-<%@page import="Auxiliares.ConexionEstatica"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.FileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -116,16 +123,50 @@
                 String pass1 = request.getParameter("pass1");
                 String pass2 = request.getParameter("pass2");
 
+                FileItemFactory factory = new DiskFileItemFactory();
+                ServletFileUpload upload = new ServletFileUpload(factory);
+
+                List items = upload.parseRequest(request);
+                p = new Profesor();
+
+                // Se recorren todos los items, que son de tipo FileItem
+                for (Object item : items) {
+                    FileItem uploaded = (FileItem) item;
+
+                    if (!uploaded.isFormField()) {
+
+                        String rutaDestino = "perfiles/";
+                        File fichero = new File(rutaDestino, uploaded.getName());
+                        uploaded.write(fichero);
+
+                        byte[] icono = new byte[(int) fichero.length()];
+                        InputStream input = new FileInputStream(fichero);
+                        input.read(icono);
+                        p.setFoto(icono);
+
+                        out.println("Archivo '" + uploaded.getName() + "' subido correctamente.");
+                    } else {
+                        String key = uploaded.getFieldName();
+                        String valor = uploaded.getString();
+                        out.println("Valor recuperado con uploaded: " + key + " = " + valor + "</br>");
+                        if (key.equals("nombre")) {
+                            p.setNombre(valor);
+                        }
+
+                    }
+                }
+
                 if (pass1.equals(pass2)) {
                     String c = Codificar.codifica(pass1);
                     ConexionEstatica.nueva();
-                    ConexionEstatica.modificarPerfil(email, nombre, apellido, c, p.getCod_Prof());
+                    ConexionEstatica.modificarPerfil(email, nombre, apellido, c, p.getCod_Prof(), p.getFotoBlob());
                     ConexionEstatica.cerrarBD();
                     response.sendRedirect("../Vistas/Profesor/Editar_Perfil.jsp");
                 }
             }
-
-
         %>
+
+
+
     </body>
 </html>

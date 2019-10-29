@@ -5,6 +5,10 @@
  */
 package Centro;
 
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
+
 /**
  *
  * @author isa
@@ -19,6 +23,8 @@ public class Profesor {
     private String email;
     private String passw;
     private int rol;
+    private byte[] foto; 
+    private Blob fotoBlob;
     
 //********************************CONSTRUCTORES*********************************
 
@@ -38,6 +44,37 @@ public class Profesor {
         this.email = email;
         this.passw = passw;
     }
+
+    public Profesor(int cod_Prof, String nombre, String apellidos, String email, String passw, int rol, byte[] foto, Blob fotoBlob) {
+        this.cod_Prof = cod_Prof;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.passw = passw;
+        this.rol = rol;
+        this.foto = foto;
+        this.fotoBlob = fotoBlob;
+    }
+
+    public Profesor(int cod_Prof, String apellidos, String email, String passw, int rol, Blob fotoBlob) {
+        this.cod_Prof = cod_Prof;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.passw = passw;
+        this.rol = rol;
+        this.fotoBlob = fotoBlob;
+    }
+    
+    
+
+    public Profesor(String string, String string0, String string1, String string2, int aInt, int aInt0, Blob blob) {
+        
+    }
+
+    public Profesor() {
+    }
+    
+    
     
 //********************************GETTER Y SETTER*******************************
     
@@ -89,7 +126,37 @@ public class Profesor {
         this.rol = rol;
     }
     
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public Blob getFotoBlob() {
+        return fotoBlob;
+    }
+
+    public void setFotoBlob(Blob fotoBlob) {
+        this.fotoBlob = fotoBlob;
+    }
+    
+      public String getFotoimgString() {
+        String image =null;
+        try {
+            byte[] imageBytes = this.fotoBlob.getBytes(1, (int) this.fotoBlob.length());
+            String encodedImage = Base64.getEncoder().encodeToString(imageBytes);
+            image = "data:image/jpg;base64," + encodedImage;
+             
+        } catch (SQLException ex) {
+        }
+        return image;
+    }
+    
 //********************************MÉTODOS***************************************
+
+    
 
 
 }

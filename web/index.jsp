@@ -30,7 +30,7 @@
         
     </body>
     
-        <footer>
+    <footer>
         <adress>Realizado por:<br>
             Isabel de Marcos López<br>
             2º DAW

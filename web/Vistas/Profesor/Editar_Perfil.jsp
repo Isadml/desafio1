@@ -90,7 +90,7 @@
             }%>
 
 
-        <form name="editar" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
+        <form name="editar" enctype="multipart/form-data" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
             <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>">
             <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>">
             <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>">
