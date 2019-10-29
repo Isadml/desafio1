@@ -4,6 +4,7 @@
     Author     : isa
 --%>
 
+<%@page import="Email.Email"%>
 <%@page import="java.io.FileNotFoundException"%>
 <%@page import="java.util.Scanner"%>
 <%@page import="java.io.File"%>
@@ -22,7 +23,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% //Comprueba si existe el profesor que intenta acceder
+        <%
+//******************************************************************************
+//***********************CONTROLADOR DEL INDEX**********************************
+//******************************************************************************
+
+            //Comprueba si existe el profesor que intenta acceder
             if (request.getParameter("aceptar") != null) {
 
                 //HttpSession sesion = request.getSession();
@@ -32,58 +38,83 @@
 
                 ConexionEstatica.nueva();
                 Profesor p = ConexionEstatica.existeProfesor(email);
+                ConexionEstatica.cerrarBD();
 
-                //Si esxiste, se le redirige a la página de login de profesores por defecto para que pueda reservar aula o navegar por la app
+                //Si existe, se le redirige a la página de login de profesores por defecto para que pueda reservar aula o navegar por la app
                 if (p != null) {
                     session.setAttribute("profe", p);
 
-                    //Obtiene una lista con todos los profesores almacenados en la BBDD
-                    LinkedList ListaProfes = ConexionEstatica.obtenerProfesores();
-                    session.setAttribute("profesores", ListaProfes);
-
                     if (p.getEmail().contentEquals(email) && p.getPassw().contentEquals(passw)) {
 
-                        //Si el login es correcto, se saca toda la información de las aulas almacenadas en la BBDD
-                        LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
-                        session.setAttribute("aulas", ListaAula);
-
-                        //Para obtener los datos de los horarios almacenados en la BBDD
-                        LinkedList<Horario> ListaHorario = ConexionEstatica.obtenerHorario();
-                        session.setAttribute("horario", ListaHorario);
-
-                        //Para obtener la lista de las aulas reservadas por el profesor que se ha logeado
-                        LinkedList Lista_Reservas = ConexionEstatica.obtenerReservas(p.getCod_Prof());
-                        session.setAttribute("reservas", Lista_Reservas);
-
-                        //Para obtener los datos almacenados en el archivo bitácora
-                        File f = new File("/home/isa/glassfish-4.1.1/glassfish/domains/domain1/config/bitacora.txt");
-                        LinkedList<String> ListaBitacora = new LinkedList();
-                        try {
-                            //Scanner sc = new Scanner("/home/daw203/Documentos/glassfish5/glassfish/domains/domain1/config/bitacora.txt");
-                            Scanner sc = new Scanner(f);
-
-                            while (sc.hasNextLine()) {
-                                String cad = sc.nextLine();
-
-                                ListaBitacora.add(cad);
-                            }
-                        } catch (FileNotFoundException ex) {
-                            out.println("Fichero no existe");
-                        }
-                        session.setAttribute("bitacora", ListaBitacora);
-
                         //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
-                        Date fecha1 = new Date(session.getCreationTime());
-                        Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema." + fecha1);
-                        ConexionEstatica.cerrarBD();
+                        Date fecha = new Date(session.getCreationTime());
+                        Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema." + fecha);
 
-                        response.sendRedirect("../Vistas/Login_Profesores.jsp");
+                        response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
 
                     }
                 } else {
                     response.sendRedirect("../index.jsp");
                 }
             }
+            
+//******************************************************************************
+//***********************CONTROLADOR NUEVO USUARIO******************************
+//******************************************************************************
+
+            //Registrar a un nuevo usuario
+            if (request.getParameter("boton_acep_new") != null) {
+
+                String email = request.getParameter("email");
+                String nombre = request.getParameter("nombre");
+                String apellido = request.getParameter("apellido");
+                String pass1 = request.getParameter("pass1");
+                String pass2 = request.getParameter("pass2");
+
+                if (pass1.equals(pass2)) {
+                    String c = Codificar.codifica(pass1);
+                    ConexionEstatica.nueva();
+                    ConexionEstatica.insertarProfesor(email, nombre, apellido, c, 0);
+                    ConexionEstatica.cerrarBD();
+                    response.sendRedirect("../index.jsp");
+                } else {
+                    if (request.getParameter("boton_volver") != null) {
+                        response.sendRedirect("../index.jsp");
+                    }
+                }
+            }
+
+//******************************************************************************
+//***********************CONTROLADOR RECUPERAR CONTRASEÑA***********************
+//******************************************************************************
+
+            //Para recuperar la contraseña si se ha olvidado. Se coge el email 
+            //del usuario y tras comprobar que existe en la BBDD, se le manda un 
+            //email con una contraseña por defecto.
+            if (request.getParameter("mandar") != null) {
+
+                String e = request.getParameter("email");
+                ConexionEstatica.nueva();
+                Profesor p = ConexionEstatica.existeProfesor(e);
+                ConexionEstatica.cerrarBD();
+                if (p != null) {
+
+                    Email email = new Email();
+
+                    String de = "auxiliardaw2@gmail.com";
+                    String clave = "Chubaca20";
+                    String para = request.getParameter("email");
+                    String mensaje = "Su contraseña de inicio de sesión es " + clave + "\nLe recomendamos que la cambie al volver a iniciar sesión.";
+                    String asunto = "Contraseña olvidada";
+
+                    email.enviarCorreo(de, clave, para, mensaje, asunto);
+                    out.println("Correo enviado");
+                    //response.sendRedirect("index.jsp");
+                } else {
+                    out.println("Email no registrado en nuestra base de datos.");
+                }
+            }
+
         %>
     </body>
 </html>

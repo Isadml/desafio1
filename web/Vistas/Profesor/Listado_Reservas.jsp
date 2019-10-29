@@ -4,6 +4,7 @@
     Author     : daw203
 --%>
 
+<%@page import="Auxiliares.ConexionEstatica"%>
 <%@page import="Centro.Profesor"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Centro.Reserva"%>
@@ -13,8 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/.css"/>
 
         <title>Listado de aulas reservadas</title>
     </head>
@@ -23,17 +24,17 @@
         <header>
             <h3>Listado de aulas reservadas</h3>
         </header>
-        
+
         <% Profesor p = (Profesor) session.getAttribute("profe");
             if (p.getRol() == 1) {
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>   
             </ul>
@@ -43,18 +44,18 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador de aula</a>
                     <ul>
-                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
-                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
                 </li>
             </ul>
@@ -65,39 +66,41 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador de aula</a>
                     <ul>
-                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
-                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador general</a>
                     <ul>
-                        <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
-                        <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
+                        <li><a href="../Admin_General/Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
+                        <li><a href="../Admin_General/Ver_Bitacora.jsp">Ver bitácora</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
         <%
-            }%>
+            }
 
-        <% LinkedList<Reserva> Lista = (LinkedList<Reserva>) session.getAttribute("reservas");
+            ConexionEstatica.nueva();
+            LinkedList<Reserva> Lista = ConexionEstatica.obtenerReservas(p.getCod_Prof());
+            ConexionEstatica.cerrarBD();
 
             for (int i = 0; i < Lista.size(); i++) {
                 Reserva r = Lista.get(i);
         %>
 
-        <form name="listado_aulas" action="../Controladores/Controlador_Listado_Reservas.jsp" method="POST">
+        <form name="listado_aulas" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
             <label for="cod_reser">Código reserva </label><input type="number" id="cod_reser" name="cod_reser" value="<%=r.getCod_Reserva()%>">
             <label for="cod_aula">Código aula </label><input type="text" id="cod_aula" name="cod_aula" value="<%=r.getCod_Aula()%>">
             <label for="cod_hora">Código hora </label><input type="number" id="cod_hora" name="cod_hora" value="<%=r.getCod_Hora()%>">

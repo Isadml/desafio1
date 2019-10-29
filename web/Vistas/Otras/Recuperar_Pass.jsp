@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
 
         <title>Recuperación de contraseña</title>
     </head>
@@ -19,7 +19,7 @@
             <h3>¿Has olvidado tu contraseña?</h3>
         </header>
 
-        <form name="recuperar_passw" action="../Controladores/Controlador_Recuperar_Pass.jsp" method="POST">
+        <form name="recuperar_passw" action="../../Controladores/Controlador_Index.jsp" method="POST">
             <label for="email">Email: </label><input type="text" id="email" name="email" value="" placeholder="Introduzca su email"></br></br>
             <input type="submit" name="mandar" value="Mandar email">
         </form>

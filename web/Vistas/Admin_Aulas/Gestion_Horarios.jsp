@@ -4,6 +4,7 @@
     Author     : isa
 --%>
 
+<%@page import="Auxiliares.ConexionEstatica"%>
 <%@page import="Centro.Profesor"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Centro.Horario"%>
@@ -13,8 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/.css"/>
 
         <title>Gestión de horarios</title>
     </head>
@@ -29,11 +30,11 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
-                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
-                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="../Profesor/Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="../Profesor/Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="../Profesor/Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
@@ -51,11 +52,11 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
-                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
-                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="../Profesor/Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="../Profesor/Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="../Profesor/Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
@@ -68,20 +69,21 @@
 
                 <li><a href="">Administrador general</a>
                     <ul>
-                        <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
-                        <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
+                        <li><a href="../Admin_General/Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
+                        <li><a href="../Admin_General/Ver_Bitacora.jsp">Ver bitácora</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
         <%
             }
-
-            LinkedList<Horario> ListaHorario = (LinkedList<Horario>) session.getAttribute("horario");
+            ConexionEstatica.nueva();
+            LinkedList<Horario> ListaHorario = ConexionEstatica.obtenerHorario();
+            ConexionEstatica.cerrarBD();
             for (int i = 0; i < ListaHorario.size(); i++) {
                 Horario h = (Horario) ListaHorario.get(i);
         %>
-        <form name="gestion_horarios" action="../Controladores/Controlador_Gestion_Horarios.jsp" method="POST">
+        <form name="gestion_horarios" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
             <label for="cod_hora">Código de la hora </label><input type="number" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>" style="width: 50px">
             <label for="hora_inicio">Hora de inicio </label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>">
             <label for="hora_final">Hora de finalización </label><input type="text" id="hora_final" name="hora_final" value="<%=h.getHora_Finalizar()%>">
@@ -93,12 +95,12 @@
         <% }
         %>
 
-        <form name="add_hora" action="../Controladores/Controlador_Gestion_Horarios.jsp" method="POST">
+        <form name="add_hora" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
             <label for="cod_hora">Código de la hora </label><input type="number" id="cod_hora" name="cod_hora" value="" style="width: 50px">
             <label for="hora_inicio">Hora de inicio </label><input type="text" id="hora_inicio" name="hora_inicio" value="">
             <label for="hora_final">Hora de finalización </label><input type="text" id="hora_final" name="hora_final" value="">
 
-            <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
+            <label for="add"></label><input type="submit" id="add" name="add" value="+">
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
         </form>
 

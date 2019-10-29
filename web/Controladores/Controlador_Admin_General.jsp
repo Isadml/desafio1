@@ -17,8 +17,7 @@
     </head>
     <body>
 
-        <% LinkedList<Profesor> ListaProfes = (LinkedList<Profesor>) ConexionEstatica.obtenerProfesores();
-
+        <% 
             //El administrador general puede modificar usuarios con este método con el código del profesor
             if (request.getParameter("modificar") != null) {
                 String email = request.getParameter("email");
@@ -28,10 +27,10 @@
 
                 ConexionEstatica.nueva();
                 ConexionEstatica.gestionarProfesor(email, nombre, apellido, codigo);
-                ListaProfes = ConexionEstatica.obtenerProfesores();
+                LinkedList<Profesor> ListaProfes = ConexionEstatica.obtenerProfesores();
                 session.setAttribute("profesores", ListaProfes);
                 ConexionEstatica.cerrarBD();
-                response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
+                response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");
 
             }
 
@@ -41,15 +40,15 @@
                 int codigo = Integer.parseInt(request.getParameter("codigo"));
                 ConexionEstatica.borrarProfesor(codigo);
                 ConexionEstatica.borrarPrivilegios(codigo);
-                ListaProfes = ConexionEstatica.obtenerProfesores();
+                LinkedList<Profesor> ListaProfes = ConexionEstatica.obtenerProfesores();
                 session.setAttribute("profesores", ListaProfes);
                 ConexionEstatica.cerrarBD();
-                response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
+                response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");
             }
 
             //El administrador general puede añadir usuarios con este método 
             if (request.getParameter("add") != null) {
-                response.sendRedirect("../Vistas/Nuevo_Usuario.jsp");
+                response.sendRedirect("../Vistas/Otras/Nuevo_Usuario.jsp");
             }
 
             //El administrador general puede modificar permisos con este método y con el código del profesor
@@ -59,7 +58,7 @@
                 int permisos  = Integer.parseInt(request.getParameter("permisos"));
                 ConexionEstatica.modificarPermisos(codigo, permisos);
                 ConexionEstatica.cerrarBD();
-                response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
+                response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");
             }
 
             //El administrador general puede añadir permisos a un profesor con su código
@@ -69,7 +68,7 @@
                 int codigo = Integer.parseInt(request.getParameter("permisos"));
                 ConexionEstatica.darPermisos(codigo, permisos);
                 ConexionEstatica.cerrarBD();
-                response.sendRedirect("../Vistas/Gestion_Usuarios.jsp");
+                response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");
             }
 
             //Cerrar sesión

@@ -13,8 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/.css"/>
 
         <title>Gestión de usuarios</title>
     </head>
@@ -26,18 +26,18 @@
 
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
-                        <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
-                        <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="../Profesor/Editar_Perfil.jsp">Editar perfil</a></li>
+                        <li><a href="../Profesor/Listado_Reservas.jsp">Ver reservas</a></li>
+                        <li><a href="../Profesor/Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador de aula</a>
                     <ul>
-                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
-                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
                 </li>
 
@@ -51,11 +51,13 @@
         </nav>
 
 
-        <% LinkedList<Profesor> ListaProfes = (LinkedList<Profesor>) session.getAttribute("profesores");
+        <% ConexionEstatica.nueva();
+            LinkedList<Profesor> ListaProfes = ConexionEstatica.obtenerProfesores();
+            ConexionEstatica.cerrarBD();
             for (int i = 0; i < ListaProfes.size(); i++) {
                 Profesor p = (Profesor) ListaProfes.get(i);
         %>
-        <form name="gestion_usuarios" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
+        <form name="gestion_usuarios" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
             <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>">
             <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>" >
             <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>" >
@@ -66,7 +68,7 @@
 
         </form>
 
-        <form name="permisos" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
+        <form name="permisos" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
             <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>" style="width: 50px">
             <label for="permisos"></label><input type="number" id="permisos" name="permisos" min="1" max="3">
             <label for="mod_perm"></label><input type="submit" id="mod_perm" name="mod_perm" value="Modificar permisos">
@@ -75,8 +77,8 @@
 
         <%}%>
         <br><br>
-        <form name="botones" action="../Controladores/Controlador_Gestion_Usuarios.jsp" method="POST">
-            <label for="add"></label><input type="submit" id="add" name="add" value="+"><br><br>
+        <form name="botones" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
+            <label for="add"></label><input type="submit" id="add" name="add" value="+">
 
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
         </form>

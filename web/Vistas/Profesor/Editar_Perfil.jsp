@@ -11,8 +11,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
-        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
 
         <title>Editar perfil</title>
     </head>
@@ -27,11 +27,11 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>   
             </ul>
@@ -41,18 +41,18 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador de aula</a>
                     <ul>
-                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
-                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
                 </li>
             </ul>
@@ -63,25 +63,25 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="Login_Profesores.jsp">Profesor</a>
+                <li><a href="">Profesor</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
-                        <li><a href="Reservar_Aula.jsp">Reservar aula</a></li>
+                        <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador de aula</a>
                     <ul>
-                        <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
-                        <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
+                        <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
                 </li>
 
                 <li><a href="">Administrador general</a>
                     <ul>
-                        <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
-                        <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
+                        <li><a href="../Admin_General/Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
+                        <li><a href="../Admin_General/Ver_Bitacora.jsp">Ver bitácora</a></li>
                     </ul>
                 </li>
             </ul>
@@ -90,7 +90,7 @@
             }%>
 
 
-        <form name="editar" action="../Controladores/Controlador_Editar_Perfil.jsp" method="POST">
+        <form name="editar" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
             <label for="email">Email: </label><input type="email" id="email" name="email" value="<%=p.getEmail()%>">
             <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="<%=p.getNombre()%>">
             <label for="apellido">Apellido: </label><input type="text" id="apellido" name="apellido" value="<%=p.getApellidos()%>">

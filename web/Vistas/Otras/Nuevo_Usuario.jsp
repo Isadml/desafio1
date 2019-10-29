@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="../css/miestilo.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
 
         <title>Formulario de registro para nuevos usuarios</title>
     </head>
@@ -20,7 +20,7 @@
             <h3>Formulario de registro para nuevos usuarios</h3>
         </header>
 
-        <form name="registro" action="../Controladores/controlador_Nuevo_Usuario.jsp" method="POST">
+        <form name="registro" action="../../Controladores/controlador_Index.jsp" method="POST">
             <label for="email">Email: </label><input type="email" id="email" name="email" value="" required="">
             <label for="nombre">Nombre: </label><input type="text" id="nombre" name="nombre" value="" required="">
             <label for="apellido">Apellido: </label><input type="text" id="nombre" name="apellido" value="" required="">
