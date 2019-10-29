@@ -99,7 +99,6 @@
             int cod_Aula = (Integer) session.getAttribute("cod_aula");
             LinkedList Lista_Horas_Reservadas = ConexionEstatica.obetenerHorasReservadas(cod_Aula, fecha);
             ConexionEstatica.cerrarBD();
-            
         %>
         <h4>Fecha <% out.println(fecha);%></h4>
         <h4>Aula <% out.println(cod_Aula);%></h4>
@@ -114,17 +113,27 @@
             <label for="hora_finalizar">Hora de final </label><input type="text" id="hora_finalizar" name="hora_finalizar" value="<%=h.getHora_Finalizar()%>">
 
             <%    if (!Lista_Horas_Reservadas.isEmpty()) {
-                    for (int j = 0; j < Lista_Horas_Reservadas.size(); j++) {
+                    int j = 0;
+                    boolean encontrado = false;
+                    while(j < Lista_Horas_Reservadas.size() && !encontrado) {
                         //Horario h = (Horario) Lista_Horario.get(i);
                         Reserva r = (Reserva) Lista_Horas_Reservadas.get(j); %>
 
             <% if (r.getFecha().equals(fecha) && h.getCod_Hora() == r.getCod_Hora()) {
+                    encontrado = true; 
+                    j++;  
+                } else { 
+                    j++; 
+                } 
+            }//fin while
+            if(encontrado){
+
             %>
             <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservada" disabled>
             <% } else { %> <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"> <%
 
                     }
-                }
+                
             } else { %> <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"> <%
 
                     }

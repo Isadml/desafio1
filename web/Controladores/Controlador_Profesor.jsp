@@ -123,7 +123,7 @@
                 String pass1 = request.getParameter("pass1");
                 String pass2 = request.getParameter("pass2");
 
-                FileItemFactory factory = new DiskFileItemFactory();
+                /**FileItemFactory factory = new DiskFileItemFactory();
                 ServletFileUpload upload = new ServletFileUpload(factory);
 
                 List items = upload.parseRequest(request);
@@ -154,12 +154,12 @@
                         }
 
                     }
-                }
+                }**/
 
                 if (pass1.equals(pass2)) {
                     String c = Codificar.codifica(pass1);
                     ConexionEstatica.nueva();
-                    ConexionEstatica.modificarPerfil(email, nombre, apellido, c, p.getCod_Prof(), p.getFotoBlob());
+                    ConexionEstatica.modificarPerfil(email, nombre, apellido, c, p.getCod_Prof());
                     ConexionEstatica.cerrarBD();
                     response.sendRedirect("../Vistas/Profesor/Editar_Perfil.jsp");
                 }
