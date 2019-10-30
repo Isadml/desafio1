@@ -4,6 +4,8 @@
     Author     : daw203
 --%>
 
+<%@page import="Auxiliares.Bitacora"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Auxiliares.ConexionEstatica"%>
 <%@page import="Password.Codificar"%>
@@ -17,7 +19,7 @@
     </head>
     <body>
 
-        <% 
+        <%
             //El administrador general puede modificar usuarios con este método con el código del profesor
             if (request.getParameter("modificar") != null) {
                 String email = request.getParameter("email");
@@ -30,6 +32,12 @@
                 LinkedList<Profesor> ListaProfes = ConexionEstatica.obtenerProfesores();
                 session.setAttribute("profesores", ListaProfes);
                 ConexionEstatica.cerrarBD();
+
+                Profesor p = (Profesor) session.getAttribute("profe");
+                //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
+                Date fecha = new Date(session.getCreationTime());
+                Bitacora.escribirBitacora(p.getNombre() + " ha modificado la lista de usuarios.  " + fecha);
+
                 response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");
 
             }
@@ -43,6 +51,12 @@
                 LinkedList<Profesor> ListaProfes = ConexionEstatica.obtenerProfesores();
                 session.setAttribute("profesores", ListaProfes);
                 ConexionEstatica.cerrarBD();
+                
+                Profesor p = (Profesor) session.getAttribute("profe");
+                //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
+                Date fecha = new Date(session.getCreationTime());
+                Bitacora.escribirBitacora(p.getNombre() + " ha modificado la lista de usuarios.  " + fecha);
+                
                 response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");
             }
 
@@ -55,7 +69,7 @@
             if (request.getParameter("mod_perm") != null) {
                 ConexionEstatica.nueva();
                 int codigo = Integer.parseInt(request.getParameter("codigo"));
-                int permisos  = Integer.parseInt(request.getParameter("permisos"));
+                int permisos = Integer.parseInt(request.getParameter("permisos"));
                 ConexionEstatica.modificarPermisos(codigo, permisos);
                 ConexionEstatica.cerrarBD();
                 response.sendRedirect("../Vistas/Admin_General/Gestion_Usuarios.jsp");

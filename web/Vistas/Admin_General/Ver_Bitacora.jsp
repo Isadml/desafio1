@@ -16,6 +16,7 @@
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Archivo bitácora</title>
     </head>
@@ -73,10 +74,12 @@
                 <tr>
                     <td><p><% out.println(cad);%></p></td>
                 </tr>
+                <% }
+                %>
+                <tr>
+                    <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
+                </tr>
             </tbody>
-
-            <% }
-            %>
 
         </table>
     </body>

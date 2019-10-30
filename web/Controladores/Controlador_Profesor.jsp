@@ -4,6 +4,8 @@
     Author     : daw203
 --%>
 
+<%@page import="Auxiliares.Bitacora"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
@@ -44,7 +46,6 @@
                 response.sendRedirect("../Vistas/Profesor/Reservar_Aula.jsp");
             }
 
-
 //******************************************************************************
 //***********************CONTROLADOR DEL LISTADO DE RESERVAS********************
 //******************************************************************************
@@ -83,7 +84,6 @@
                 response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
             }
 
-
 //******************************************************************************
 //***********************CONTROLADOR DE RESERVAS DE AULAS***********************
 //******************************************************************************
@@ -103,6 +103,10 @@
 
                 session.setAttribute("horas_Reservadas", Lista_Horas_Reservadas);
                 ConexionEstatica.cerrarBD();
+
+                //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
+                Date fecha2 = new Date(session.getCreationTime());
+                Bitacora.escribirBitacora(p.getNombre() + " ha reservado un aula. " + fecha2);
 
                 response.sendRedirect("../Vistas/Profesor/Reservar_Aula.jsp");
             }

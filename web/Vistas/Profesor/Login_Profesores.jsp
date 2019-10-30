@@ -13,6 +13,7 @@
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Página de reserva de aulas</title>
     </head>
@@ -79,8 +80,9 @@
             <label for="aula"><input id="aula" name="aula" type="number"/></label>
             <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label>
             <label for="cerrar"><input id="cerrar" name="cerrar" type="submit" value="Cerrar sesión"/></label>
-
         </form>
+        <label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;">
+
 
     </body>
 

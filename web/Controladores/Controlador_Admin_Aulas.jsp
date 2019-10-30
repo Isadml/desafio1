@@ -4,6 +4,9 @@
     Author     : isa
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="Centro.Profesor"%>
+<%@page import="Auxiliares.Bitacora"%>
 <%@page import="Centro.Horario"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="Centro.Aula"%>
@@ -32,6 +35,12 @@
                 LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
                 session.setAttribute("aulas", ListaAula);
                 ConexionEstatica.cerrarBD();
+                
+                Profesor p = (Profesor) session.getAttribute("profe");
+                //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
+                Date fecha = new Date(session.getCreationTime());
+                Bitacora.escribirBitacora(p.getNombre() + " ha modificado la lista de aulas.  " + fecha);
+                
                 response.sendRedirect("../Vistas/Admin_Aulas/Gestion_Aulas.jsp");
             }
 
@@ -43,6 +52,12 @@
                 LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
                 session.setAttribute("aulas", ListaAula);
                 ConexionEstatica.cerrarBD();
+                
+                Profesor p = (Profesor) session.getAttribute("profe");
+                //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
+                Date fecha = new Date(session.getCreationTime());
+                Bitacora.escribirBitacora(p.getNombre() + " ha modificado la lista de aulas.  " + fecha);
+                
                 response.sendRedirect("../Vistas/Admin_Aulas/Gestion_Aulas.jsp");
             }
 

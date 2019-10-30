@@ -39,7 +39,6 @@ header {
 
 form , table {
     grid-area: formulario;
-    width: auto;
     height: auto;
 }
 
@@ -116,6 +115,10 @@ table, td, th, tr {
     width: auto;
     border-collapse: collapse;
     border: 3px solid indianred;
+}
+
+td {
+    width: 150px;
 }
 
 footer {

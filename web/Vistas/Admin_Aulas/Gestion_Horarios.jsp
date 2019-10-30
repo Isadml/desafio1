@@ -16,6 +16,7 @@
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Gestión de horarios</title>
     </head>
@@ -104,11 +105,12 @@
         </tr>
         <tr>
             <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
+            </form>    
+            <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            </form>
+            
         </tr>
     </tbody>
 

@@ -15,6 +15,7 @@
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Gestión de usuarios</title>
     </head>
@@ -76,22 +77,23 @@
                 <td><label for="mod_perm"></label><input type="submit" id="mod_perm" name="mod_perm" value="Modificar permisos"></td>
                 <td><label for="add_perm"></label><input type="submit" id="add_perm" name="add_perm" value="Añadir permisos"></td>
                 <label for="codigo"></label><input type="hidden" id="codigo" name="codigo" value="<%=p.getCod_Prof()%>">
-                </form>
-                <% }%>
+            </form>
+            <% }%>
         </tr>
         <tr>
         <form name="botones" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
             <td><label for="add"></label><input type="submit" id="add" name="add" value="+"></td>
             <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
+            </form>
+            <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-        </form>
-        </tr>
-    </tbody>
+        
+    </tr>
+</tbody>
 
 </table>
 

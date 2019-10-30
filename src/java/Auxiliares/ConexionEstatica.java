@@ -83,9 +83,9 @@ public class ConexionEstatica {
             ConexionEstatica.Conj_Registros = sentenciaPreparada.executeQuery();
             if (ConexionEstatica.Conj_Registros.next())//Si devuelve true es que existe.
             {
-                existe = new Profesor(Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getString("email"), Conj_Registros.getString("password"), Conj_Registros.getInt("codProf"),Conj_Registros.getInt("cod_privilegio"));
+                existe = new Profesor(Conj_Registros.getString("nombre"), Conj_Registros.getString("apellido"), Conj_Registros.getString("email"), Conj_Registros.getString("password"), Conj_Registros.getInt("codProf"), Conj_Registros.getInt("cod_privilegio"));
             }
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
         }
         return existe;//Si devolvemos null el usuario no existe.
@@ -181,7 +181,8 @@ public class ConexionEstatica {
 
     /**
      * Para obtener los horarios almacenados en la BBDD
-     * @return 
+     *
+     * @return
      */
     public static LinkedList obtenerHorario() {
         LinkedList horarioBD = new LinkedList<>();
@@ -210,7 +211,7 @@ public class ConexionEstatica {
      * @throws SQLException
      */
     public static void insertarProfesor(String email, String nombre, String apellido, String password, int cod_Prof) throws SQLException {
-        String Sentencia = "INSERT INTO profesores VALUES (NULL, NULL, NULL, NULL, ?)";
+        String Sentencia = "INSERT INTO profesores VALUES (?, ?, ?, ?, ?)";
         PreparedStatement ps = null;
         try {
             ps = ConexionEstatica.Conex.prepareStatement(Sentencia);
@@ -244,8 +245,8 @@ public class ConexionEstatica {
     public static void borrarProfesor(int codigo) throws SQLException {
         String Sentencia = "DELETE FROM profesores WHERE codProf = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, codigo);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, codigo);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -262,13 +263,13 @@ public class ConexionEstatica {
     public static void modificarPerfil(String email, String nombre, String apellido, String password, int cod_Prof) throws SQLException {
         String Sentencia = "UPDATE profesores SET nombre = ?, apellido = ?, email = ?, password = ? WHERE codProf = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setString(1, nombre);
-            sentenciaPreparada.setString(2, apellido);
-            sentenciaPreparada.setString(3, email);
-            sentenciaPreparada.setString(4, password);
-            //sentenciaPreparada.setBlob(5, foto);
-            sentenciaPreparada.setInt(5, cod_Prof);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setString(1, nombre);
+        sentenciaPreparada.setString(2, apellido);
+        sentenciaPreparada.setString(3, email);
+        sentenciaPreparada.setString(4, password);
+        //sentenciaPreparada.setBlob(5, foto);
+        sentenciaPreparada.setInt(5, cod_Prof);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -285,11 +286,11 @@ public class ConexionEstatica {
     public static void gestionarProfesor(String email, String nombre, String apellido, int cod_Prof) throws SQLException {
         String Sentencia = "UPDATE profesores SET nombre = ?, apellido = ?, email = ? WHERE codProf = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setString(1, nombre);
-            sentenciaPreparada.setString(2, apellido);
-            sentenciaPreparada.setString(3, email);;
-            sentenciaPreparada.setInt(4, cod_Prof);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setString(1, nombre);
+        sentenciaPreparada.setString(2, apellido);
+        sentenciaPreparada.setString(3, email);;
+        sentenciaPreparada.setInt(4, cod_Prof);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -302,14 +303,15 @@ public class ConexionEstatica {
      * @param fecha
      * @throws SQLException
      */
-    public static void modificarReserva(int cod, int cod_Hora, int cod_Aula, String fecha) throws SQLException {
-        String Sentencia = "UPDATE reserva SET cod_Hora = ?, cod_Aula = ?, fecha = ? WHERE cod_Reserva = ?";
+    public static void modificarReserva(int cod, int cod_Hora, int cod_Aula, String fecha, int cod_Prof) throws SQLException {
+        String Sentencia = "UPDATE reserva SET cod_Prof = ?,  cod_Hora = ?, cod_Aula = ?, fecha = ? WHERE cod_Reserva = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, cod_Hora);
-            sentenciaPreparada.setInt(2, cod_Aula);
-            sentenciaPreparada.setString(3, fecha);
-            sentenciaPreparada.setInt(4, cod);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, cod_Prof);
+        sentenciaPreparada.setInt(2, cod_Hora);
+        sentenciaPreparada.setInt(3, cod_Aula);
+        sentenciaPreparada.setString(4, fecha);
+        sentenciaPreparada.setInt(5, cod);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -325,12 +327,12 @@ public class ConexionEstatica {
     public static void insertarReserva(int cod_Hora, int cod_Aula, String fecha, int cod_Prof, int num) throws SQLException {
         String Sentencia = "INSERT INTO reserva VALUES ( ?, ?, ?, ?, ?)";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, cod_Prof);
-            sentenciaPreparada.setInt(2, cod_Aula);
-            sentenciaPreparada.setInt(3, cod_Hora);
-            sentenciaPreparada.setString(4, fecha);
-            sentenciaPreparada.setInt(3, num);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, cod_Prof);
+        sentenciaPreparada.setInt(2, cod_Aula);
+        sentenciaPreparada.setInt(3, cod_Hora);
+        sentenciaPreparada.setString(4, fecha);
+        sentenciaPreparada.setInt(3, num);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -343,8 +345,8 @@ public class ConexionEstatica {
     public static void borrarReserva(int cod) throws SQLException {
         String Sentencia = "DELETE FROM reserva WHERE cod_Reserva = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, cod);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, cod);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -358,9 +360,9 @@ public class ConexionEstatica {
     public static void modificarPermisos(int cod_Prof, int privi) throws SQLException {
         String Sentencia = "UPDATE permisos_Profesores SET cod_privilegio = ? WHERE cod_Prof = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, privi);
-            sentenciaPreparada.setInt(2, cod_Prof);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, privi);
+        sentenciaPreparada.setInt(2, cod_Prof);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -374,9 +376,9 @@ public class ConexionEstatica {
     public static void darPermisos(int cod_Prof, int privi) throws SQLException {
         String Sentencia = "INSERT INTO  permisos_Profesores VALUES( ?, ?)";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, privi);
-            sentenciaPreparada.setInt(2, cod_Prof);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, privi);
+        sentenciaPreparada.setInt(2, cod_Prof);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -389,8 +391,8 @@ public class ConexionEstatica {
     public static void borrarPrivilegios(int codigo) throws SQLException {
         String Sentencia = "DELETE FROM permisos_Profesores WHERE cod_Prof = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, codigo);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, codigo);
+        sentenciaPreparada.executeUpdate();
     }
 
 //----------------------------------------------------------
@@ -404,9 +406,9 @@ public class ConexionEstatica {
     public static void modificarAula(int cod, String descripcion) throws SQLException {
         String Sentencia = "UPDATE aulas SET descripcion = ? WHERE cod_Aula = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setString(1, descripcion);
-            sentenciaPreparada.setInt(2, cod);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setString(1, descripcion);
+        sentenciaPreparada.setInt(2, cod);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
@@ -419,67 +421,71 @@ public class ConexionEstatica {
     public static void borrarAulas(int codigo) throws SQLException {
         String Sentencia = "DELETE FROM aulas WHERE cod_Aula= ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, codigo);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, codigo);
+        sentenciaPreparada.executeUpdate();
     }
-    
+
     //----------------------------------------------------------
     /**
      * Insert para añadir aulas a la BBDD
+     *
      * @param cod_Prof
      * @param privi
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void insertarAula(int cod, String desc) throws SQLException {
         String Sentencia = "INSERT INTO  aulas VALUES( ?, ?)";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, cod);
-            sentenciaPreparada.setString(2, desc);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, cod);
+        sentenciaPreparada.setString(2, desc);
+        sentenciaPreparada.executeUpdate();
     }
-    
+
     //----------------------------------------------------------
     /**
      * Update para modificar las horas almacenadas en la BBDD
+     *
      * @param cod
      * @param descripcion
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void modificarHorario(int cod, String hora_i, String hora_f) throws SQLException {
         String Sentencia = "UPDATE horario SET hora_Inicio = ? , hora_Finalizar = ? WHERE cod_Hora = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setString(1, hora_i);
-            sentenciaPreparada.setString(2, hora_f);
-            sentenciaPreparada.setInt(3, cod);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setString(1, hora_i);
+        sentenciaPreparada.setString(2, hora_f);
+        sentenciaPreparada.setInt(3, cod);
+        sentenciaPreparada.executeUpdate();
     }
 
     //----------------------------------------------------------
     /**
      * Delete para borrar franjas horarias de la BBDD
+     *
      * @param codigo
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void borrarHorario(int codigo) throws SQLException {
         String Sentencia = "DELETE FROM horario WHERE cod_Hora = ?";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, codigo);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, codigo);
+        sentenciaPreparada.executeUpdate();
     }
-    
+
     //----------------------------------------------------------
     /**
      * Insert para añadir franjas horarias a la BBDD
+     *
      * @param cod
      * @param desc
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void insertarHora(int cod, String hora_i, String hora_f) throws SQLException {
         String Sentencia = "INSERT INTO  horario VALUES( ?, ?, ?)";
         PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(Sentencia);
-            sentenciaPreparada.setInt(1, cod);
-            sentenciaPreparada.setString(2, hora_i);
-            sentenciaPreparada.setString(3, hora_f);
-            sentenciaPreparada.executeUpdate();
+        sentenciaPreparada.setInt(1, cod);
+        sentenciaPreparada.setString(2, hora_i);
+        sentenciaPreparada.setString(3, hora_f);
+        sentenciaPreparada.executeUpdate();
     }
 }
