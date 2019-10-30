@@ -13,9 +13,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
-        <link rel="stylesheet" type="text/css" href="../../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
 
         <title>Gestión de aulas</title>
     </head>
@@ -30,16 +30,11 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="">Administrador de aula</a>
                     <ul>
                         <li><a href="../Profesor/Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="../Profesor/Listado_Reservas.jsp">Ver reservas</a></li>
                         <li><a href="../Profesor/Login_Profesores.jsp">Reservar aula</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador de aula</a>
-                    <ul>
                         <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
                         <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
@@ -52,23 +47,13 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="">Administrador general</a>
                     <ul>
                         <li><a href="../Profesor/Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="../Profesor/Listado_Reservas.jsp">Ver reservas</a></li>
                         <li><a href="../Profesor/Login_Profesores.jsp">Reservar aula</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador de aula</a>
-                    <ul>
                         <li><a href="Gestion_Aulas.jsp">Gestionar aulas</a></li>
                         <li><a href="Gestion_Horarios.jsp">Gestionar horarios</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador general</a>
-                    <ul>
                         <li><a href="../Admin_General/Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
                         <li><a href="../Admin_General/Ver_Bitacora.jsp">Ver bitácora</a></li>
                     </ul>
@@ -79,36 +64,60 @@
             }
             ConexionEstatica.nueva();
             LinkedList<Aula> ListaAula = ConexionEstatica.obtenerAulas();
-            ConexionEstatica.cerrarBD();
-            for (int i = 0; i < ListaAula.size(); i++) {
-                Aula a = (Aula) ListaAula.get(i);
-        %>
-        <form name="gestion_aulas" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
-            <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="<%=a.getCodAula()%>" style="width: 50px">
-            <label for="descrip">Descripción </label><input type="text" id="descrip" name="descrip" value="<%=a.getDescripcion()%>">
+            ConexionEstatica.cerrarBD(); %>
 
-            <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
-            <label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar"><br><br>
+        <table>
+            <caption>Gestión de aulas</caption>
 
-        </form>
-        <% }%>
+            <thead>
+                <tr>
+                    <th>Código del aula</th>
+                    <th>Descripción</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
 
+            <% for (int i = 0; i < ListaAula.size(); i++) {
+                    Aula a = (Aula) ListaAula.get(i);
+            %>
+
+
+            <tbody>
+                <tr>
+            <form name="gestion_aulas" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
+                <td><label for="cod_aula"> </label><input type="number" id="cod_aula" name="cod_aula" value="<%=a.getCodAula()%>"></td>
+                <td><label for="descrip"> </label><input type="text" id="descrip" name="descrip" value="<%=a.getDescripcion()%>"></td>
+                <td><label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar"></td>
+                <td><label for="borrar"></label><input type="submit" id="borrar" name="borrar" value="Borrar"></td>
+                    <% }%>
+            </form>
+        </tr>
+        <tr>
         <form name="add_aula" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
-            <label for="cod_aula">Código del aula </label><input type="number" id="cod_aula" name="cod_aula" value="" style="width: 50px">
-            <label for="descrip">Descripción </label><input type="text" id="descrip" name="descrip" value="">
-
-            <label for="add"></label><input type="submit" id="add" name="add" value="+">
-            <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"><br><br>
+            <td><label for="cod_aula"></label><input type="number" id="cod_aula" name="cod_aula" value=""></td>
+            <td><label for="descrip"></label><input type="text" id="descrip" name="descrip" value=""></td>
+            <td><label for="add"></label><input type="submit" id="add" name="add" value="+"></td>
+            <td></td>
+            </tr>
+            <tr>
+                <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </form>
+    </tbody>
 
+</table>
 
-    </body>
+</body>
 
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
+<footer>
+    <adress>Realizado por:<br>
+        Isabel de Marcos López<br>
+        2º DAW
+    </adress>
+</footer>
 
 </html>

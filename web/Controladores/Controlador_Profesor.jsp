@@ -44,17 +44,12 @@
                 response.sendRedirect("../Vistas/Profesor/Reservar_Aula.jsp");
             }
 
-            //Cerrar sesión
-            if (request.getParameter("cerrar") != null) {
-                session.invalidate();
-                response.sendRedirect("../index.jsp");
-            }
 
 //******************************************************************************
 //***********************CONTROLADOR DEL LISTADO DE RESERVAS********************
 //******************************************************************************
             //Modificar una reserva de aula con el código de la reserva
-            if (request.getParameter("modificar") != null) {
+            if (request.getParameter("modificar_R") != null) {
                 ConexionEstatica.nueva();
                 Profesor p = (Profesor) session.getAttribute("profe");
                 LinkedList Lista = ConexionEstatica.obtenerReservas(p.getCod_Prof());
@@ -64,7 +59,7 @@
                 int cod_Aula = Integer.parseInt(request.getParameter("cod_aula"));
                 String fecha = request.getParameter("fecha");
 
-                ConexionEstatica.modificarReserva(cod, cod_Hora, cod_Aula, fecha);
+                ConexionEstatica.modificarReserva(cod, cod_Hora, cod_Aula, fecha, p.getCod_Prof());
                 Lista = ConexionEstatica.obtenerReservas(p.getCod_Prof());
                 session.setAttribute("reservas", Lista);
                 ConexionEstatica.cerrarBD();
@@ -72,7 +67,7 @@
             }
 
             //Borrar o eliminar una reserva
-            if (request.getParameter("borrar") != null) {
+            if (request.getParameter("borrar_R") != null) {
                 ConexionEstatica.nueva();
                 Profesor p = (Profesor) session.getAttribute("profe");
                 int cod = Integer.parseInt(request.getParameter("cod_reser"));
@@ -87,6 +82,7 @@
             if (request.getParameter("add") != null) {
                 response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
             }
+
 
 //******************************************************************************
 //***********************CONTROLADOR DE RESERVAS DE AULAS***********************
@@ -123,39 +119,36 @@
                 String pass1 = request.getParameter("pass1");
                 String pass2 = request.getParameter("pass2");
 
-                /**FileItemFactory factory = new DiskFileItemFactory();
-                ServletFileUpload upload = new ServletFileUpload(factory);
-
-                List items = upload.parseRequest(request);
-                p = new Profesor();
-
-                // Se recorren todos los items, que son de tipo FileItem
-                for (Object item : items) {
-                    FileItem uploaded = (FileItem) item;
-
-                    if (!uploaded.isFormField()) {
-
-                        String rutaDestino = "perfiles/";
-                        File fichero = new File(rutaDestino, uploaded.getName());
-                        uploaded.write(fichero);
-
-                        byte[] icono = new byte[(int) fichero.length()];
-                        InputStream input = new FileInputStream(fichero);
-                        input.read(icono);
-                        p.setFoto(icono);
-
-                        out.println("Archivo '" + uploaded.getName() + "' subido correctamente.");
-                    } else {
-                        String key = uploaded.getFieldName();
-                        String valor = uploaded.getString();
-                        out.println("Valor recuperado con uploaded: " + key + " = " + valor + "</br>");
-                        if (key.equals("nombre")) {
-                            p.setNombre(valor);
-                        }
-
-                    }
-                }**/
-
+                /**
+                 * FileItemFactory factory = new DiskFileItemFactory();
+                 * ServletFileUpload upload = new ServletFileUpload(factory);
+                 *
+                 * List items = upload.parseRequest(request); p = new
+                 * Profesor();
+                 *
+                 * // Se recorren todos los items, que son de tipo FileItem for
+                 * (Object item : items) { FileItem uploaded = (FileItem) item;
+                 *
+                 * if (!uploaded.isFormField()) {
+                 *
+                 * String rutaDestino = "perfiles/"; File fichero = new
+                 * File(rutaDestino, uploaded.getName());
+                 * uploaded.write(fichero);
+                 *
+                 * byte[] icono = new byte[(int) fichero.length()]; InputStream
+                 * input = new FileInputStream(fichero); input.read(icono);
+                 * p.setFoto(icono);
+                 *
+                 * out.println("Archivo '" + uploaded.getName() + "' subido
+                 * correctamente."); } else { String key =
+                 * uploaded.getFieldName(); String valor = uploaded.getString();
+                 * out.println("Valor recuperado con uploaded: " + key + " = " +
+                 * valor + "</br>"); if (key.equals("nombre")) {
+                 * p.setNombre(valor); }
+                 *
+                 * }
+                 * }*
+                 */
                 if (pass1.equals(pass2)) {
                     String c = Codificar.codifica(pass1);
                     ConexionEstatica.nueva();
@@ -164,6 +157,13 @@
                     response.sendRedirect("../Vistas/Profesor/Editar_Perfil.jsp");
                 }
             }
+
+            //Cerrar sesión
+            if (request.getParameter("cerrar") != null) {
+                session.invalidate();
+                response.sendRedirect("../index.jsp");
+            }
+
         %>
 
 

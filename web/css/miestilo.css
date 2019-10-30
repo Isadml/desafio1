@@ -37,9 +37,10 @@ header {
     width: 100%;
 }
 
-form  {
+form , table {
     grid-area: formulario;
     width: auto;
+    height: auto;
 }
 
 nav.vertical {
@@ -109,6 +110,12 @@ nav.vertical  ul ul li:hover > ul{
 nav.vertical  ul ul ul a {
     background-color: palevioletred;
     color: aliceblue;
+}
+
+table, td, th, tr {
+    width: auto;
+    border-collapse: collapse;
+    border: 3px solid indianred;
 }
 
 footer {

@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
 
@@ -26,23 +26,13 @@
 
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="">Administrador general</a>
                     <ul>
                         <li><a href="../Profesor/Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="../Profesor/Listado_Reservas.jsp">Ver reservas</a></li>
                         <li><a href="../Profesor/Login_Profesores.jsp">Reservar aula</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador de aula</a>
-                    <ul>
                         <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
                         <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador general</a>
-                    <ul>
                         <li><a href="Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
                         <li><a href="Ver_Bitacora.jsp">Ver bitácora</a></li>
                     </ul>
@@ -64,15 +54,31 @@
                 }
             } catch (FileNotFoundException ex) {
                 out.println("Fichero no existe");
-            }
-            for (int i = 0; i < ListaBitacora.size(); i++) {
-                String cad = ListaBitacora.get(i);
-        %>
-        <p><% out.println(cad);%></p>
-        <% }
+            } %>
 
-        %>
+        <table>
+            <caption>Contenido del archivo bitácora</caption>
 
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+
+            <% for (int i = 0; i < ListaBitacora.size(); i++) {
+                    String cad = ListaBitacora.get(i);
+            %>
+
+            <tbody>
+                <tr>
+                    <td><p><% out.println(cad);%></p></td>
+                </tr>
+            </tbody>
+
+            <% }
+            %>
+
+        </table>
     </body>
 
     <footer>

@@ -33,8 +33,9 @@
 
                 //HttpSession sesion = request.getSession();
                 //sesion.setMaxInactiveInterval(5);
-                String email = (request.getParameter("email"));
-                String passw = (Codificar.codifica(request.getParameter("pass")));
+                
+                String email = request.getParameter("email");
+                String passw = Codificar.codifica(request.getParameter("pass"));
 
                 ConexionEstatica.nueva();
                 Profesor p = ConexionEstatica.existeProfesor(email);
@@ -44,24 +45,23 @@
                 if (p != null) {
                     session.setAttribute("profe", p);
 
-                    if (p.getEmail().contentEquals(email) && p.getPassw().contentEquals(passw)) {
+                    if (p.getEmail().equals(email) && p.getPassw().equals(passw)) {
 
                         //Obtiene la fecha y hora del momento en que se creó la session y la escribe en bitácora
                         Date fecha = new Date(session.getCreationTime());
-                        Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema." + fecha);
+                        Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema. " + fecha);
 
                         response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
-
                     }
+                    
                 } else {
                     response.sendRedirect("../index.jsp");
                 }
             }
-            
+
 //******************************************************************************
 //***********************CONTROLADOR NUEVO USUARIO******************************
 //******************************************************************************
-
             //Registrar a un nuevo usuario
             if (request.getParameter("boton_acep_new") != null) {
 
@@ -76,18 +76,16 @@
                     ConexionEstatica.nueva();
                     ConexionEstatica.insertarProfesor(email, nombre, apellido, c, 0);
                     ConexionEstatica.cerrarBD();
-                    response.sendRedirect("../index.jsp");
-                } else {
-                    if (request.getParameter("boton_volver") != null) {
-                        response.sendRedirect("../index.jsp");
-                    }
+                    response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
                 }
+            }
+            if (request.getParameter("boton_volver") != null) {
+                response.sendRedirect("../index.jsp");
             }
 
 //******************************************************************************
 //***********************CONTROLADOR RECUPERAR CONTRASEÑA***********************
 //******************************************************************************
-
             //Para recuperar la contraseña si se ha olvidado. Se coge el email 
             //del usuario y tras comprobar que existe en la BBDD, se le manda un 
             //email con una contraseña por defecto.
@@ -109,7 +107,7 @@
 
                     email.enviarCorreo(de, clave, para, mensaje, asunto);
                     out.println("Correo enviado");
-                    //response.sendRedirect("index.jsp");
+
                 } else {
                     out.println("Email no registrado en nuestra base de datos.");
                 }

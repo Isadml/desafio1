@@ -14,9 +14,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../index.jsp">
+        <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
-        <link rel="stylesheet" type="text/css" href="../../css/.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
 
         <title>Página de reserva de aulas</title>
     </head>
@@ -25,7 +25,7 @@
         <header>
             <h3>Página de reserva de aulas</h3>
         </header>
-        
+
         <% Profesor p = (Profesor) session.getAttribute("profe");
             if (p.getRol() == 1) {
         %>
@@ -45,16 +45,11 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="">Administrador de aula</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
                         <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador de aula</a>
-                    <ul>
                         <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
                         <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
                     </ul>
@@ -67,23 +62,13 @@
         %>
         <nav class="vertical">
             <ul>
-                <li><a href="">Profesor</a>
+                <li><a href="">Administrador general</a>
                     <ul>
                         <li><a href="Editar_Perfil.jsp">Editar perfil</a></li>
                         <li><a href="Listado_Reservas.jsp">Ver reservas</a></li>
                         <li><a href="Login_Profesores.jsp">Reservar aula</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador de aula</a>
-                    <ul>
                         <li><a href="../Admin_Aulas/Gestion_Aulas.jsp">Gestionar aulas</a></li>
                         <li><a href="../Admin_Aulas/Gestion_Horarios.jsp">Gestionar horarios</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="">Administrador general</a>
-                    <ul>
                         <li><a href="../Admin_General/Gestion_Usuarios.jsp">Gestionar usuarios</a></li>
                         <li><a href="../Admin_General/Ver_Bitacora.jsp">Ver bitácora</a></li>
                     </ul>
@@ -102,55 +87,67 @@
         %>
         <h4>Fecha <% out.println(fecha);%></h4>
         <h4>Aula <% out.println(cod_Aula);%></h4>
-        <%
-            for (int i = 0; i < Lista_Horario.size(); i++) {
-                Horario h = (Horario) Lista_Horario.get(i);
-        %>
 
-        <form name="reservas" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
-            <label for="cod_hora">Código de hora </label><input type="text" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>">
-            <label for="hora_inicio">Hora de inicio </label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>">
-            <label for="hora_finalizar">Hora de final </label><input type="text" id="hora_finalizar" name="hora_finalizar" value="<%=h.getHora_Finalizar()%>">
+        <table>
+            <caption>Disponibilidad del aula</caption>
 
-            <%    if (!Lista_Horas_Reservadas.isEmpty()) {
-                    int j = 0;
-                    boolean encontrado = false;
-                    while(j < Lista_Horas_Reservadas.size() && !encontrado) {
-                        //Horario h = (Horario) Lista_Horario.get(i);
-                        Reserva r = (Reserva) Lista_Horas_Reservadas.get(j); %>
+            <thead>
+                <tr>
+                    <th>Código de hora</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de final</th>
+                </tr>
+            </thead>
 
-            <% if (r.getFecha().equals(fecha) && h.getCod_Hora() == r.getCod_Hora()) {
-                    encontrado = true; 
-                    j++;  
-                } else { 
-                    j++; 
-                } 
-            }//fin while
-            if(encontrado){
-
+            <% for (int i = 0; i < Lista_Horario.size(); i++) {
+                    Horario h = (Horario) Lista_Horario.get(i);
             %>
-            <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservada" disabled>
-            <% } else { %> <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"> <%
+            <form name="reservas" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
 
-                    }
-                
-            } else { %> <label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"> <%
+                <tbody>
+                    <tr>
+                        <td><label for="cod_hora"></label><input type="text" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>"></td>
+                        <td><label for="hora_inicio"></label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>"></td>
+                        <td><label for="hora_finalizar"></label><input type="text" id="hora_finalizar" name="hora_finalizar" value="<%=h.getHora_Finalizar()%>"></td>
 
-                    }
-            %>
-            <br>
-        </form>
-        <%
-            }
-        %>
+                        <%    if (!Lista_Horas_Reservadas.isEmpty()) {
+                                int j = 0;
+                                boolean encontrado = false;
+                                while (j < Lista_Horas_Reservadas.size() && !encontrado) {
+                                    //Horario h = (Horario) Lista_Horario.get(i);
+                                    Reserva r = (Reserva) Lista_Horas_Reservadas.get(j); %>
 
-    </body>
+                        <% if (r.getFecha().equals(fecha) && h.getCod_Hora() == r.getCod_Hora()) {
+                                    encontrado = true;
+                                    j++;
+                                } else {
+                                    j++;
+                                }
+                            }//fin while
+                            if (encontrado) {
+                        %>
+                        <td><label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservada" disabled></td>
+                            <% } else { %>
+                        <td><label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"></td>
+                            <%
+                                }
+                            } else {%> 
+                        <td><label for="reservar"></label><input type="submit" id="reservar" name="reservar" value="Reservar"></td>
+                            <%
+                                }
+                            %>  
+                    </tr>
+                </tbody>
+                </form>
+                <% }%>
+        </table>
+</body>
 
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
+<footer>
+    <adress>Realizado por:<br>
+        Isabel de Marcos López<br>
+        2º DAW
+    </adress>
+</footer>
 
 </html>

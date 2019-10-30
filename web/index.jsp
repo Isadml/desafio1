@@ -22,8 +22,8 @@
             <label for="password">Password: </label><input type="password" id="password" name="pass" value=""></br></br>
             <input type="submit" name="aceptar" value="Aceptar">
             
-            <a href="Vistas/Nuevo_Usuario.jsp">Registrarse</a>
-            <a href="Vistas/Recuperar_Pass.jsp">He olvidado mi contraseña</a></br></br>
+            <a href="Vistas/Otras/Nuevo_Usuario.jsp">Registrarse</a>
+            <a href="Vistas/Otras/Recuperar_Pass.jsp">He olvidado mi contraseña</a></br></br>
         </form>
         
         <% //Añadir captcha %>

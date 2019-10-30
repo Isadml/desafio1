@@ -69,7 +69,7 @@
 //******************************************************************************
 
             //Para modificar las horas que hay en la BBDD
-            if (request.getParameter("modificar") != null) {
+            if (request.getParameter("modificar_H") != null) {
                 int cod = Integer.parseInt(request.getParameter("cod_hora"));
                 String hora_i = request.getParameter("hora_inicio");
                 String hora_f = request.getParameter("hora_final");
@@ -82,7 +82,7 @@
             }
 
             //Para borrar las horas de la BBDD
-            if (request.getParameter("borrar") != null) {
+            if (request.getParameter("borrar_H") != null) {
                 int cod = Integer.parseInt(request.getParameter("cod_hora"));
                 ConexionEstatica.nueva();
                 ConexionEstatica.borrarHorario(cod);
@@ -93,7 +93,7 @@
             }
 
             //Para añadir horas a la BBDD
-            if (request.getParameter("add") != null) {
+            if (request.getParameter("add_H") != null) {
                 int cod = Integer.parseInt(request.getParameter("cod_hora"));
                 String hora_i = request.getParameter("hora_inicio");
                 String hora_f = request.getParameter("hora_final");
