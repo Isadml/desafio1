@@ -23,15 +23,16 @@ form > label{
 form > input{
     grid-column: controles;
     grid-row: auto;
-    background-color: bisque;
+    background-color: #F7BE5C;
     border-radius: 5px;
 }
 
 form > a {
-  width: 65%;
+    width: 65%;
+    color: #EFA527;
 }
 
 form >  submit {
     grid-column: span 2;
-    background-color: bisque;
+    background-color: #F7BE5C;
 }

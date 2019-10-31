@@ -10,12 +10,6 @@ and open the template in the editor.
 
 *{
     box-sizing: border-box;
-    /*! margin: 10px; */
-}
-
-main {
-    text-align:left;
-
 }
 
 body {
@@ -24,17 +18,23 @@ body {
         "cabecera      cabecera"
         "menu_ver      formulario"
         "pie           pie";
-
     grid-template-columns: 30% auto;
     grid-template-rows: auto;
     grid-gap: 5px;
     font-family: 'Varela Round', sans-serif;
+    background-color: #8A1C9D;
+    margin: 0px;
 }
 
 header {
     grid-area: cabecera;
-    background-color:bisque;
+    background-color: #BB50CE;
     width: 100%;
+    color: #EFA527;
+}
+
+h1 {
+    padding: 15px;
 }
 
 form , table {
@@ -123,6 +123,12 @@ td {
 
 footer {
     grid-area: pie;
-    background-color: indianred;
-    border: 5px indianred solid;
+    background-color: #4BCAB9;
+    border: 5px #4BCAB9 solid;
+    padding: 10px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    font-weight: bold;
+    color: #086155;
 }
