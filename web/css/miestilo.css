@@ -10,6 +10,7 @@ and open the template in the editor.
 
 *{
     box-sizing: border-box;
+    /*! background-image: url(imagenes\imagen1.jpeg); */
 }
 
 body {
@@ -24,11 +25,11 @@ body {
     font-family: 'Varela Round', sans-serif;
     background-color: #8A1C9D;
     margin: 0px;
+    background-image: url(../imagenes/imagen1.jpeg);
 }
 
 header {
     grid-area: cabecera;
-    background-color: #BB50CE;
     width: 100%;
     color: #EFA527;
 }
@@ -123,12 +124,10 @@ td {
 
 footer {
     grid-area: pie;
-    background-color: #4BCAB9;
-    border: 5px #4BCAB9 solid;
     padding: 10px;
     position: fixed;
     bottom: 0px;
     width: 100%;
     font-weight: bold;
-    color: #086155;
+    color: #189685;
 }
