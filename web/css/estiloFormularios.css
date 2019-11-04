@@ -40,12 +40,21 @@ form >  submit, input {
 
 #volver1 {
     position: absolute;
-    top: 170px;
-    left: 560px;
+    top: 173px;
+    left: 563px;
 }
 
 #volver2 {
     position: absolute;
-    top: 260px;
-    left: 560px;
+    top: 270px;
+    left: 563px;
+}
+
+#cod_reser, #cod_aula, #cod_hora, #fecha, #hora_Inicio, #hora_Finalizar{
+    width: 100px;
+}
+
+#bitacora {
+    width: 300px;
+    color: #EFA527;
 }

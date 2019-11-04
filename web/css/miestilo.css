@@ -15,9 +15,9 @@ and open the template in the editor.
 body {
     display: grid;
     grid-template-areas:
-        "cabecera      cabecera"
-        "menu_ver      formulario"
-        "pie           pie";
+        "cabecera      cabecera     cabecera"
+        "menu_ver      formulario   formulario"
+        "pie           pie          pie";
     grid-template-columns: 30% 50% auto;
     grid-template-rows: auto;
     grid-gap: 5px;
@@ -30,7 +30,7 @@ header {
     grid-area: cabecera;
     background-color: #BB50CE;
     width: 100%;
-    color: #EFA527;
+    color: #F7BE5C;
 }
 
 h1 {
@@ -74,7 +74,7 @@ nav.vertical  li a {
 
 nav.vertical  li a:hover {
     background-color: #BB50CE;
-    color: #EFA527;
+    color: #F7BE5C;
 }
 
 nav.vertical  > ul {
@@ -101,23 +101,21 @@ nav.vertical  ul li:hover > ul{
 }
 
 table, td, th, tr {
-    width: auto;
+    width: 100px;
     border-collapse: collapse;
     border: 3px solid #F7BE5C;
 }
 
 th, caption, label {
-    color: #4BCAB9;
+    color: #F7BE5C;
 }
 
 footer {
     grid-area: pie;
-    background-color: #4BCAB9;
-    border: 5px #4BCAB9 solid;
     padding: 10px;
     position: fixed;
     bottom: 0px;
     width: 100%;
     font-weight: bold;
-    color: #086155;
+    color: #EFA527;
 }
