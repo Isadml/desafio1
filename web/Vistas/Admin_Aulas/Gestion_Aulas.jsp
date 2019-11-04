@@ -103,17 +103,15 @@
             </tr>
             <tr>
                 <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
-                </form>
-                <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
-                <td></td>
-                <td></td>
-            </tr>
-        
-    </tbody>
+        </form>
+        <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</tbody>
 
 </table>
-
-</body>
 
 <footer>
     <adress>Realizado por:<br>
@@ -121,5 +119,7 @@
         2º DAW
     </adress>
 </footer>
+
+</body>
 
 </html>

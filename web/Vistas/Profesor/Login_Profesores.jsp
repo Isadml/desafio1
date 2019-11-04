@@ -76,21 +76,20 @@
             }%>
 
         <form name="login_prof" action="../../Controladores/Controlador_Profesor.jsp" method="POST">
-            <label for="fecha"><input id="fecha" name="fecha" type="date" min=""/></label>
-            <label for="aula"><input id="aula" name="aula" type="number"/></label>
-            <label for="ver_disp"><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/></label>
-            <label for="cerrar"><input id="cerrar" name="cerrar" type="submit" value="Cerrar sesión"/></label>
+            <label for="fecha">Fecha </label><input id="fecha" name="fecha" type="date" min=""/>
+            <label for="aula">Aula </label><input id="aula" name="aula" type="number"/>
+            <label for="ver_disp"></label><input id="ver_disp" type="submit" name="ver_disp" value="Ver disponibilidad"/>
+            <label for="cerrar"></label><input id="cerrar" name="cerrar" type="submit" value="Cerrar sesión"/>
         </form>
-        <label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;">
+        <label for="volver1"></label><input type="submit" id="volver1" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;">
 
-
+        <footer>
+            <adress>Realizado por:<br>
+                Isabel de Marcos López<br>
+                2º DAW
+            </adress>
+        </footer>
+        
     </body>
-
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
 
 </html>

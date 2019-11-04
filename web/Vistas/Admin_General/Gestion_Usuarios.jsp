@@ -84,20 +84,18 @@
         <form name="botones" action="../../Controladores/Controlador_Admin_General.jsp" method="POST">
             <td><label for="add"></label><input type="submit" id="add" name="add" value="+"></td>
             <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
-            </form>
-            <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        
+        </form>
+        <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
     </tr>
 </tbody>
 
 </table>
-
-</body>
 
 <footer>
     <adress>Realizado por:<br>
@@ -105,5 +103,7 @@
         2º DAW
     </adress>
 </footer>
+
+</body>
 
 </html>

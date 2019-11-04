@@ -83,42 +83,38 @@
             %>
 
             <tbody>
-                <form name="gestion_horarios" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
+            <form name="gestion_horarios" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
                 <tr>
-                <td><label for="cod_hora"></label><input type="number" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>"style="width: 50px;"></td>
-                <td><label for="hora_inicio"></label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>"style="width: 200px;"></td>
-                <td><label for="hora_final"></label><input type="text" id="hora_final" name="hora_final" value="<%=h.getHora_Finalizar()%>"style="width: 200px;"></td>
-                <td><label for="modificar"></label><input type="submit" id="modificar" name="modificar_H" value="Modificar"></td>
-                <td><label for="borrar"></label><input type="submit" id="borrar" name="borrar_H" value="Borrar"></td>
-                </form>
+                    <td><label for="cod_hora"></label><input type="number" id="cod_hora" name="cod_hora" value="<%=h.getCod_Hora()%>"style="width: 50px;"></td>
+                    <td><label for="hora_inicio"></label><input type="text" id="hora_inicio" name="hora_inicio" value="<%=h.getHora_Inicio()%>"style="width: 200px;"></td>
+                    <td><label for="hora_final"></label><input type="text" id="hora_final" name="hora_final" value="<%=h.getHora_Finalizar()%>"style="width: 200px;"></td>
+                    <td><label for="modificar"></label><input type="submit" id="modificar" name="modificar_H" value="Modificar"></td>
+                    <td><label for="borrar"></label><input type="submit" id="borrar" name="borrar_H" value="Borrar"></td>
+            </form>
         </tr>
         <% }
-                    %>
-            
+        %>
+
         <tr>
-            <form name="add_hora" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
+        <form name="add_hora" action="../../Controladores/Controlador_Admin_Aulas.jsp" method="POST">
             <td><label for="cod_hora"></label><input type="number" id="cod_hora" name="cod_hora" value="" style="width: 50px;"></td>
             <td><label for="hora_inicio"></label><input type="text" id="hora_inicio" name="hora_inicio" value="" style="width: 200px;"></td>
             <td><label for="hora_final"></label><input type="text" id="hora_final" name="hora_final" value="" style="width: 200px;"></td>
             <td><label for="add"></label><input type="submit" id="add" name="add_H" value="+"></td>
             <td></td>
-        </tr>
-        <tr>
-            <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
-            </form>    
-            <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            
-        </tr>
-    </tbody>
+            </tr>
+            <tr>
+                <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
+        </form>    
+        <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+</tbody>
 
 </table>
-
-
-
-</body>
 
 <footer>
     <adress>Realizado por:<br>
@@ -126,5 +122,7 @@
         2º DAW
     </adress>
 </footer>
+
+</body>
 
 </html>

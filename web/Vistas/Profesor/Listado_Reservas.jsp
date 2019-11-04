@@ -133,13 +133,13 @@
 </tbody>
 </table>
 
-</body>
-
 <footer>
     <adress>Realizado por:<br>
         Isabel de Marcos López<br>
         2º DAW
     </adress>
 </footer>
+
+</body>
 
 </html>

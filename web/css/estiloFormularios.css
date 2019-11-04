@@ -10,7 +10,7 @@ and open the template in the editor.
 
 form {
     display: grid;
-    grid-template-columns: [labels] 10% [controles] 20%;
+    grid-template-columns: [labels] 15% [controles] 35%;
     grid-auto-flow: row;
     grid-gap: 0.3em;
 }
@@ -20,7 +20,7 @@ form > label{
     grid-row: auto;
 }
 
-form > input{
+form > input, input{
     grid-column: controles;
     grid-row: auto;
     background-color: #F7BE5C;
@@ -32,7 +32,20 @@ form > a {
     color: #EFA527;
 }
 
-form >  submit {
+form >  submit, input {
     grid-column: span 2;
     background-color: #F7BE5C;
+    border-radius: 5px;
+}
+
+#volver1 {
+    position: absolute;
+    top: 170px;
+    left: 560px;
+}
+
+#volver2 {
+    position: absolute;
+    top: 260px;
+    left: 560px;
 }

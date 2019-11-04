@@ -24,13 +24,13 @@
             <input type="submit" name="mandar" value="Mandar email">
         </form>
 
-    </body>
+        <footer>
+            <adress>Realizado por:<br>
+                Isabel de Marcos López<br>
+                2º DAW
+            </adress>
+        </footer>
 
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
+    </body>
 
 </html>

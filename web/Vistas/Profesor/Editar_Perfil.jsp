@@ -85,15 +85,16 @@
             <label for="modificar"></label><input type="submit" id="modificar" name="modificar" value="Modificar">
             <label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión">
         </form>
-            <label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;">
+        <label for="volver2"></label><input type="submit" id="volver2" name="volver" value="Volver" onclick="pag_Anterior()" style="width: 100px;">
+
+        <footer>
+            <adress>Realizado por:<br>
+                Isabel de Marcos López<br>
+                2º DAW
+            </adress>
+        </footer>
 
     </body>
 
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
 
 </html>
