@@ -24,6 +24,7 @@
         <form name="inicio_sesion" action="Controladores/controlador_Index.jsp" method="POST">
             <label for="email">Email: </label><input type="text" id="email" name="email" value="">
             <label for="password">Password: </label><input type="password" id="password" name="pass" value="">
+            <img src="jcaptcha.jpg" /> <input type="text" name="jcaptcha" value="" />
             <input type="submit" name="aceptar" value="Aceptar">
 
             <a href="Vistas/Otras/Nuevo_Usuario.jsp">Registrarse</a>

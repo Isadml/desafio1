@@ -33,7 +33,6 @@
 
                 //HttpSession sesion = request.getSession();
                 //sesion.setMaxInactiveInterval(5);
-                
                 String email = request.getParameter("email");
                 String passw = Codificar.codifica(request.getParameter("pass"));
 
@@ -51,11 +50,16 @@
                         Date fecha = new Date(session.getCreationTime());
                         Bitacora.escribirBitacora(p.getNombre() + " ha entrado en el sistema. " + fecha);
 
-                        response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
+                        String userCaptchaResponse = request.getParameter("jcaptcha");
+                        boolean captchaPassed = SimpleImageCaptchaServlet.validateResponse(request, userCaptchaResponse);
+                        if (captchaPassed) {
+                            response.sendRedirect("../Vistas/Profesor/Login_Profesores.jsp");
+                        } else {
+                            response.sendRedirect("../index.jsp");
+                        }
+
                     }
-                    
-                } else {
-                    response.sendRedirect("../index.jsp");
+
                 }
             }
 
