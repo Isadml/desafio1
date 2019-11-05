@@ -16,6 +16,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/menu_hamburguesa.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_movil.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_tablet.css"/>
         <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Gestión de usuarios</title>
@@ -26,6 +29,7 @@
             <h3>Bienvenido a la página de gestión de usuarios</h3>
         </header>
 
+        <button id="menu">MENU</button>
         <nav class="vertical">
             <ul>
                 <li><a href="">Administrador general</a>

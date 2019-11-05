@@ -1,13 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 27-oct-2019, 14:45:57
-    Author     : isa
-*/
-
 *{
     box-sizing: border-box;
 }
@@ -28,7 +18,7 @@ body {
 
 header {
     grid-area: cabecera;
-    background-color: #BB50CE;
+    background-color: #8A1C9D;
     width: 100%;
     color: #F7BE5C;
 }
@@ -63,8 +53,8 @@ nav.vertical  li {
 }
 
 nav.vertical  li a {
-    background-color: #C071CE;
-    color:#086155;
+    background-color: #F7BE5C;
+    color:#8A1C9D;
     text-decoration: none;
     display: block;
     margin: 0px;
@@ -73,7 +63,7 @@ nav.vertical  li a {
 }
 
 nav.vertical  li a:hover {
-    background-color: #BB50CE;
+    background-color: #580966;
     color: #F7BE5C;
 }
 
@@ -117,5 +107,5 @@ footer {
     bottom: 0px;
     width: 100%;
     font-weight: bold;
-    color: #EFA527;
+    color: #F7BE5C;
 }

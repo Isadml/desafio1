@@ -1,0 +1,69 @@
+@media all and (max-width: 768px) {
+    *{
+        box-sizing: border-box;
+        font-size: 8pt;
+    }
+
+    body {
+        display: grid;
+        grid-template-areas:
+            "cabecera      cabecera"
+            "menu_ver      formulario"
+            "pie           pie";
+        grid-template-columns: 30% auto;
+        grid-template-rows: auto;
+        grid-gap: 5px;
+        font-family: 'Varela Round', sans-serif;
+        background-color: #8A1C9D;
+        margin: 0px;
+    }
+
+    header {
+        grid-area: cabecera;
+        background-color: #8A1C9D;
+        width: 100%;
+        color: #F7BE5C;
+    }
+
+    h1 {
+        padding: 10px;
+    }
+
+    form , table {
+        grid-area: formulario;
+        height: auto;
+        width: 400px;
+    }
+
+    table, td, th, tr {
+        width: 50px;
+        border-collapse: collapse;
+        border: 3px solid #F7BE5C;
+    }
+
+    th, caption, label {
+        color: #F7BE5C;
+    }
+
+    #volver1 {
+        position: absolute;
+        top: 173px;
+        left: 563px;
+    }
+
+    #volver2 {
+        position: absolute;
+        top: 270px;
+        left: 563px;
+    }
+
+    footer {
+        grid-area: pie;
+        padding: 5px;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        font-weight: bold;
+        color: #F7BE5C;
+    }
+}
