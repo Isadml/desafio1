@@ -1,25 +1,14 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 27-oct-2019, 14:45:57
-    Author     : isa
-*/
-
 *{
     box-sizing: border-box;
-    /*! background-image: url(imagenes\imagen1.jpeg); */
 }
 
 body {
     display: grid;
     grid-template-areas:
-        "cabecera      cabecera"
-        "menu_ver      formulario"
-        "pie           pie";
-    grid-template-columns: 30% auto;
+        "cabecera      cabecera     cabecera"
+        "menu_ver      formulario   formulario"
+        "pie           pie          pie";
+    grid-template-columns: 30% 50% auto;
     grid-template-rows: auto;
     grid-gap: 5px;
     font-family: 'Varela Round', sans-serif;
@@ -30,8 +19,9 @@ body {
 
 header {
     grid-area: cabecera;
+    background-color: #8A1C9D;
     width: 100%;
-    color: #EFA527;
+    color: #F7BE5C;
 }
 
 h1 {
@@ -64,8 +54,8 @@ nav.vertical  li {
 }
 
 nav.vertical  li a {
-    background-color:darksalmon;
-    color:crimson;
+    background-color: #F7BE5C;
+    color:#8A1C9D;
     text-decoration: none;
     display: block;
     margin: 0px;
@@ -74,8 +64,8 @@ nav.vertical  li a {
 }
 
 nav.vertical  li a:hover {
-    background-color: fuchsia;
-    color: blanchedalmond;
+    background-color: #580966;
+    color: #F7BE5C;
 }
 
 nav.vertical  > ul {
@@ -101,25 +91,14 @@ nav.vertical  ul li:hover > ul{
     width: 200px;
 }
 
-nav.vertical  ul ul li:hover > ul{
-    position: absolute;
-    left: 200px;
-    top: 0px;
-}
-
-nav.vertical  ul ul ul a {
-    background-color: palevioletred;
-    color: aliceblue;
-}
-
 table, td, th, tr {
-    width: auto;
+    width: 100px;
     border-collapse: collapse;
-    border: 3px solid indianred;
+    border: 3px solid #F7BE5C;
 }
 
-td {
-    width: 150px;
+th, caption, label {
+    color: #F7BE5C;
 }
 
 footer {
@@ -129,5 +108,9 @@ footer {
     bottom: 0px;
     width: 100%;
     font-weight: bold;
+<<<<<<< HEAD
     color: #189685;
+=======
+    color: #F7BE5C;
+>>>>>>> CSS
 }

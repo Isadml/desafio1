@@ -1,16 +1,6 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : 27-oct-2019, 14:41:12
-    Author     : isa
-*/
-
 form {
     display: grid;
-    grid-template-columns: [labels] 10% [controles] 20%;
+    grid-template-columns: [labels] 15% [controles] 35%;
     grid-auto-flow: row;
     grid-gap: 0.3em;
 }
@@ -21,7 +11,7 @@ form > label{
     color: #189685;
 }
 
-form > input{
+form > input, input{
     grid-column: controles;
     grid-row: auto;
     background-color: #F7BE5C;
@@ -33,7 +23,29 @@ form > a {
     color: #EFA527;
 }
 
-form >  submit {
+form >  submit, input {
     grid-column: span 2;
     background-color: #F7BE5C;
+    border-radius: 5px;
+}
+
+#volver1 {
+    position: absolute;
+    top: 173px;
+    left: 563px;
+}
+
+#volver2 {
+    position: absolute;
+    top: 270px;
+    left: 563px;
+}
+
+#cod_reser, #cod_aula, #cod_hora, #fecha, #hora_Inicio, #hora_Finalizar{
+    width: 100px;
+}
+
+#bitacora {
+    width: 300px;
+    color: #EFA527;
 }

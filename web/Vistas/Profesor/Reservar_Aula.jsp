@@ -15,8 +15,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/menu_hamburguesa.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_movil.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_tablet.css"/>
         <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Página de reserva de aulas</title>
@@ -30,6 +34,7 @@
         <% Profesor p = (Profesor) session.getAttribute("profe");
             if (p.getRol() == 1) {
         %>
+        <button id="menu">MENU</button>
         <nav class="vertical">
             <ul>
                 <li><a href="">Profesor</a>
@@ -44,6 +49,7 @@
         <% }
             if (p.getRol() == 2) {
         %>
+        <button id="menu">MENU</button>
         <nav class="vertical">
             <ul>
                 <li><a href="">Administrador de aula</a>
@@ -61,6 +67,7 @@
 
             if (p.getRol() == 3) {
         %>
+        <button id="menu">MENU</button>
         <nav class="vertical">
             <ul>
                 <li><a href="">Administrador general</a>
@@ -144,13 +151,12 @@
             </form>
             <% }%>
             <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" </form>
-            <% }%>></td>
+                <% }%>></td>
             <td></td>
         </tr>
     </tbody>
 
 </table>
-</body>
 
 <footer>
     <adress>Realizado por:<br>
@@ -158,5 +164,7 @@
         2º DAW
     </adress>
 </footer>
+
+</body>
 
 </html>

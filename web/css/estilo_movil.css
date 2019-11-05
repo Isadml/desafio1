@@ -1,0 +1,58 @@
+@media all and (min-width: 0px) and (max-width: 320px) {
+
+    *{
+        box-sizing: border-box;
+        font-size: 6pt;
+    }
+
+    body {
+        display: grid;
+        grid-template-areas:
+            "cabecera"
+            "menu_ver"
+            "formulario"
+            "pie";
+        grid-template-columns:auto;
+        grid-template-rows: auto;
+        grid-gap: 5px;
+        font-family: 'Varela Round', sans-serif;
+        background-color: #8A1C9D;
+        margin: 0px;
+    }
+
+    header {
+        grid-area: cabecera;
+        background-color: #8A1C9D;
+        width: 100%;
+        color: #F7BE5C;
+    }
+
+    h1 {
+        padding: 5px;
+    }
+
+    form , table {
+        grid-area: formulario;
+        height: auto;
+        width: 200px;
+    }
+
+    table, td, th, tr {
+        border-collapse: collapse;
+        border: 1px solid #F7BE5C;
+    }
+
+    th, caption, label {
+        color: #F7BE5C;
+    }
+
+    footer {
+        grid-area: pie;
+        padding: 5px;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        font-weight: bold;
+        color: #F7BE5C;
+    }
+}

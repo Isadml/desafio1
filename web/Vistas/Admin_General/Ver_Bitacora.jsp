@@ -14,8 +14,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <META HTTP-EQUIV="REFRESH" CONTENT="60;URL=../../index.jsp">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/menu_hamburguesa.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_movil.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_tablet.css"/>
         <script type="text/javascript" src="../../javaScript.js"></script>
 
         <title>Archivo bitácora</title>
@@ -25,6 +29,7 @@
             <h3>Contenido del archivo bitácora</h3>
         </header>
 
+        <button id="menu">MENU</button>
         <nav class="vertical">
             <ul>
                 <li><a href="">Administrador general</a>
@@ -72,7 +77,7 @@
 
             <tbody>
                 <tr>
-                    <td><p><% out.println(cad);%></p></td>
+                    <td><p id="bitacora"><% out.println(cad);%></p></td>
                 </tr>
                 <% }
                 %>
@@ -82,13 +87,14 @@
             </tbody>
 
         </table>
-    </body>
 
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
+        <footer>
+            <adress>Realizado por:<br>
+                Isabel de Marcos López<br>
+                2º DAW
+            </adress>
+        </footer>
+
+    </body>
 
 </html>

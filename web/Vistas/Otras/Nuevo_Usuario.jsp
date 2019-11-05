@@ -9,12 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../css/miestilo.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/estiloFormularios.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_movil.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/estilo_tablet.css"/>
 
         <title>Formulario de registro para nuevos usuarios</title>
     </head>
-    
+
     <body>
         <header>
             <h3>Formulario de registro para nuevos usuarios</h3>
@@ -30,14 +33,14 @@
             <label for="aceptar"></label><input type="submit" id="aceptar" name="boton_acep_new" value="Aceptar">
             <label for="volver"></label><input type="submit" id="volver" name="boton_volver" value="Volver">
         </form>
-        
-    </body>
 
-    <footer>
-        <adress>Realizado por:<br>
-            Isabel de Marcos López<br>
-            2º DAW
-        </adress>
-    </footer>
+        <footer>
+            <adress>Realizado por:<br>
+                Isabel de Marcos López<br>
+                2º DAW
+            </adress>
+        </footer>
+
+    </body>
 
 </html>
