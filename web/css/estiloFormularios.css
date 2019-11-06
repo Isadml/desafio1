@@ -36,8 +36,8 @@ form >  submit, input {
 
 #volver2 {
     position: absolute;
-    top: 270px;
-    left: 563px;
+    top: 260px;
+    left: 560px;
 }
 
 #cod_reser, #cod_aula, #cod_hora, #fecha, #hora_Inicio, #hora_Finalizar{

@@ -12,15 +12,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/miestilo.css"/>
         <link rel="stylesheet" type="text/css" href="css/estiloFormularios.css"/>
-        <link rel="stylesheet" type="text/css" href="../../css/estilo_movil.css"/>
-        <link rel="stylesheet" type="text/css" href="../../css/estilo_tablet.css"/>
+        <link rel="stylesheet" type="text/css" href="css/estilo_movil.css"/>
+        <link rel="stylesheet" type="text/css" href="css/estilo_tablet.css"/>
 
         <title>Inicio de sesión</title>
     </head>
     <body>
 
         <header>
-            <h1>Inicio de sesión</h1>
+            <h2>Inicio de sesión</h2>
         </header>
 
 
