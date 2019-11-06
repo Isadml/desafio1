@@ -8,7 +8,7 @@ form {
 form > label{
     grid-column: labels;
     grid-row: auto;
-    color: #189685;
+    color: #F7BE5C;
 }
 
 form > input, input{
@@ -20,7 +20,7 @@ form > input, input{
 
 form > a {
     width: 65%;
-    color: #EFA527;
+    color: #F7BE5C;
 }
 
 form >  submit, input {
