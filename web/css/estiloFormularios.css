@@ -8,6 +8,7 @@ form {
 form > label{
     grid-column: labels;
     grid-row: auto;
+    color: #189685;
 }
 
 form > input, input{
