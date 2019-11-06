@@ -96,7 +96,7 @@ table, td, th, tr {
     border: 3px solid #F7BE5C;
 }
 
-th, caption, label {
+th, caption, label, h4 {
     color: #F7BE5C;
 }
 

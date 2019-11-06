@@ -146,12 +146,14 @@
                                 }
                             %>  
                     </tr>
+                    <% }%>
                     <tr>
                         <td><label for="cerrar"></label><input type="submit" id="cerrar" name="cerrar" value="Cerrar sesión"></td>
             </form>
-            <% }%>
-            <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()" </form>
-                <% }%>></td>
+            
+            <td><label for="volver"></label><input type="submit" id="volver" name="volver" value="Volver" onclick="pag_Anterior()"></td>
+
+
             <td></td>
         </tr>
     </tbody>
